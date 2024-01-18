@@ -1,10 +1,11 @@
+"use client"
 import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
 export function NighthawksModel(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "./public/bar-enviro-for-export.glb"
+    "/bar-enviro-for-export.glb"
   );
   const { actions } = useAnimations(animations, group);
   return (
@@ -224,7 +225,7 @@ export function NighthawksModel(props) {
           material={nodes.cloth.material}
           position={[0.34199664, 0, 0]}
         />
-        <group
+        {/* <group
           name="pieChart"
           position={[-2.27789855, 1.09064043, 0]}
           rotation={[-0.40312975, -0.40235709, 0.1777791]}
@@ -257,7 +258,7 @@ export function NighthawksModel(props) {
             geometry={nodes.Mesh_4.geometry}
             material={materials.pie4}
           />
-        </group>
+        </group> */}
         <mesh
           name="BezierCurve"
           castShadow
@@ -295,4 +296,4 @@ export function NighthawksModel(props) {
   );
 }
 
-useGLTF.preload("./public/bar-enviro-for-export.glb");
+useGLTF.preload("/bar-enviro-for-export.glb");
