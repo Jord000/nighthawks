@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   useGLTF,
   useAnimations,
-  MeshTransmissionMaterial,meshPhysicalMaterial
+  MeshTransmissionMaterial,
+  meshPhysicalMaterial,
 } from "@react-three/drei";
 
 export function NighthawksModel(props) {
@@ -11,6 +12,14 @@ export function NighthawksModel(props) {
     "/bar-enviro-for-export.glb"
   );
   const { actions } = useAnimations(animations, group);
+
+  useEffect(() => {
+    console.log(actions);
+    actions.rigAction.play();
+    actions.mariaRigAction.play();
+    actions.glassinhandAction.play();
+  });
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
@@ -21,12 +30,13 @@ export function NighthawksModel(props) {
           geometry={nodes.floor.geometry}
           material={nodes.floor.material}
         >
-        <meshPhysicalMaterial
-          color={"#F0EFE5"}
-          metalness={0.2}
-          roughness={4}
-          clearcoat={0.8}
-        /></mesh>
+          <meshPhysicalMaterial
+            color={"#F0EFE5"}
+            metalness={0.2}
+            roughness={4}
+            clearcoat={0.8}
+          />
+        </mesh>
         <group name="walls1">
           <mesh
             name="Cube001"
@@ -66,7 +76,7 @@ export function NighthawksModel(props) {
           geometry={nodes.ceiling.geometry}
           material={materials["wall paint"]}
         />
-        <group name="bar" position={[-0.342, 0, 0]} scale={[1, 1.064, 1]}>
+        <group name="bar">
           <mesh
             name="Cube_1"
             castShadow
@@ -105,7 +115,6 @@ export function NighthawksModel(props) {
           position={[0.786, 0.25, 0.693]}
           scale={[3.594, 0.25, 3.594]}
         >
-          {" "}
           <MeshTransmissionMaterial
             thickness={0}
             roughness={0}
@@ -167,29 +176,47 @@ export function NighthawksModel(props) {
           castShadow
           receiveShadow
           geometry={nodes.glass01.geometry}
-               position={[-0.022, 0, 0]}
+          position={[-0.022, 0, 0]}
           scale={[1, 1.064, 1]}
-        >  <MeshTransmissionMaterial
-        thickness={0}
-        roughness={2}
-        clearcoat={1}
-        clearcoatRoughness={0}
-        transmission={1}
-        samples={16}
-        anisotropicBlur={0.1}
-        iridescence={1}
-        iridescenceIOR={1.25}
-        iridescenceThicknessRange={[0, 1400]}
-        envMapIntensity={1}
-      /></mesh>
+        >
+          <MeshTransmissionMaterial
+            color={"#DDEDF5"}
+            thickness={0.8}
+            roughness={0.1}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
+            transmission={0.99}
+            samples={16}
+            anisotropicBlur={0.1}
+            iridescence={1}
+            iridescenceIOR={1.15}
+            iridescenceThicknessRange={[0, 1400]}
+            envMapIntensity={1}
+          />
+        </mesh>
         <mesh
           name="glassinhand"
           castShadow
           receiveShadow
           geometry={nodes.glassinhand.geometry}
           material={nodes.glassinhand.material}
-          position={[0.342, 0, 0]}
-        />
+          position={[0.401, 1.059, -0.248]}
+        >
+          <MeshTransmissionMaterial
+            color={"#DDEDF5"}
+            thickness={0.8}
+            roughness={0.1}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
+            transmission={0.99}
+            samples={16}
+            anisotropicBlur={0.1}
+            iridescence={1}
+            iridescenceIOR={1.15}
+            iridescenceThicknessRange={[0, 1400]}
+            envMapIntensity={1}
+          />
+        </mesh>
         <mesh
           name="backbarglass"
           castShadow
@@ -198,21 +225,36 @@ export function NighthawksModel(props) {
           material={materials.glass2}
           position={[-1.428, -0.06, -1.504]}
           scale={[1, 1.064, 1]}
-        />
+        >
+          <MeshTransmissionMaterial
+            color={"#DDEDF5"}
+            thickness={0.8}
+            roughness={0.1}
+            clearcoat={1}
+            clearcoatRoughness={0.1}
+            transmission={0.99}
+            samples={16}
+            anisotropicBlur={0.1}
+            iridescence={1}
+            iridescenceIOR={1.15}
+            iridescenceThicknessRange={[0, 1400]}
+            envMapIntensity={1}
+          />
+        </mesh>
         <mesh
           name="tablecloth"
           castShadow
           receiveShadow
           geometry={nodes.tablecloth.geometry}
           material={nodes.tablecloth.material}
-          position={[0.366, 0.961, -0.018]}
-          scale={[0.244, 0.277, 0.199]}
-        > <meshPhysicalMaterial
-        color={"#F3F4CF"}
-        metalness={0.2}
-        roughness={0}
-        clearcoat={0.8}
-      /></mesh>
+        >
+          <meshPhysicalMaterial
+            color={"#F3F4CF"}
+            metalness={0.2}
+            roughness={0}
+            clearcoat={0.8}
+          />
+        </mesh>
         <group
           name="RIG-mariarig"
           position={[0.148, 0, 0.333]}
@@ -259,14 +301,15 @@ export function NighthawksModel(props) {
           receiveShadow
           geometry={nodes.cloth.geometry}
           material={nodes.cloth.material}
-          position={[0.342, 0, 0]}
+          position={[0.385, 1.085, -0.263]}
         >
-        <meshPhysicalMaterial
-          color={"white"}
-          metalness={0.2}
-          roughness={0}
-          clearcoat={0.8}
-        /></mesh>
+          <meshPhysicalMaterial
+            color={"white"}
+            metalness={0.2}
+            roughness={0}
+            clearcoat={0.8}
+          />
+        </mesh>
         <group
           name="pieChart"
           position={[-2.278, 1.091, 0]}
@@ -293,13 +336,13 @@ export function NighthawksModel(props) {
             geometry={nodes.Mesh_2.geometry}
             material={materials.pie3}
           /> */}
-          <mesh
+          {/* <mesh
             name="Mesh_3"
             castShadow
             receiveShadow
             geometry={nodes.Mesh_3.geometry}
             material={materials.pie4}
-          />
+          /> */}
         </group>
         <mesh
           name="BezierCurve"
@@ -310,7 +353,13 @@ export function NighthawksModel(props) {
           position={[-1.2, 1.02, -0.007]}
           rotation={[-0.772, 0, 0]}
         />
-        <group name="vinyl" position={[-0.668, 0.966, 0.005]}>
+        <group
+          name="vinyl"
+          onPointerEnter={() => {
+            actions.CylinderAction.play();
+          }}
+          position={[-0.668, 0.966, 0.005]}
+        >
           <mesh
             name="Cylinder010"
             castShadow
