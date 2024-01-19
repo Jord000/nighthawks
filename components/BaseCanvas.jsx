@@ -17,10 +17,10 @@ function BaseCanvas() {
   return (
     <div id="canvas-container" className="flex h-[100%] w-[100%]">
       <Canvas>
-        <ambientLight intensity={0.5} />
-        <directionalLight color="white" position={[0, 0, 5]} />
+        <ambientLight intensity={2} />
+        <directionalLight color="white" position={[0, 0, 10]} />
         <PerspectiveCamera fov={75} position={[0, 0, 10]} makeDefault />
-        <Environment files={"/hdrhalved.png"} background />
+        <Environment files={"/SPACE-1.hdr"} background />
         <NighthawksModel />
         {/* <PointerLockControls selector="#move-around" /> */}
         <OrbitControls ref={moveRef} />
