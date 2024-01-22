@@ -8,6 +8,8 @@ import {
   PerspectiveCamera,
   PointerLockControls,
   CameraControls,
+  AccumulativeShadows,
+  RandomizedLight,
 } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -35,18 +37,18 @@ function BaseCanvas() {
             THREE.MathUtils.degToRad(40),
             THREE.MathUtils.degToRad(15),
           ],
-          fov:70,
-          zoom:1.1
+          fov: 70,
+          zoom: 1.1,
         }}
       >
-        <ambientLight intensity={2} />
-        <directionalLight color="white" position={[0, 0, 10]} />
-       
+        <ambientLight intensity={0.1} />
+        <hemisphereLight intensity={1} groundColor="black" />
+        <pointLight color="white" position={[0, 0, 0]} />
+
         <Environment files={"/SPACE-1.hdr"} background />
         <NighthawksModel />
         {/* <PointerLockControls selector="#move-around" /> */}
-        {isCameraControl && <OrbitControls/>}
- 
+        {isCameraControl && <OrbitControls />}
       </Canvas>
       <Loader />
     </div>
