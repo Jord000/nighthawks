@@ -2,20 +2,17 @@
 import { Canvas } from "@react-three/fiber";
 import { NighthawksModel } from "./NighthawksModel";
 import {
-  Loader,
   Environment,
-  OrbitControls,
-  PerspectiveCamera,
+  OrbitControls,Sky,
   PointerLockControls,
-  CameraControls,
-  AccumulativeShadows,
-  RandomizedLight,
 } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import Lights from "./Lights";
 
 function BaseCanvas() {
   const moveRef = useRef(null);
+
   const [isCameraControl, setIsCameraControl] = useState(false);
 
   useEffect(() => {
@@ -41,16 +38,15 @@ function BaseCanvas() {
           zoom: 1.1,
         }}
       >
-        <ambientLight intensity={0.1} />
-        <hemisphereLight intensity={1} groundColor="black" />
-        <pointLight color="white" position={[0, 0, 0]} />
 
-        <Environment files={"/SPACE-1.hdr"} background />
+      
+        <fog attach="fog" args={["#d0d0d0", 8, 35]} />
+        <Lights />
+        <Environment files={"/clouds.exr"} background />
         <NighthawksModel />
         {/* <PointerLockControls selector="#move-around" /> */}
         {isCameraControl && <OrbitControls />}
       </Canvas>
-      <Loader />
     </div>
   );
 }

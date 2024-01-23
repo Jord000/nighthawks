@@ -18,6 +18,7 @@ export function NighthawksModel(props) {
     actions.rigAction.play();
     actions.mariaRigAction.play();
     actions.glassinhandAction.play();
+    actions.clothAction.play()
   });
 
   return (
