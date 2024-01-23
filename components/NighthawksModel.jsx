@@ -4,9 +4,11 @@ import {
   useAnimations,
   MeshTransmissionMaterial,
   meshPhysicalMaterial,
+  useTexture,
 } from "@react-three/drei";
 
 export function NighthawksModel(props) {
+  const metalMatCap = useTexture('/metalmatcap1.png')
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/bar-enviro-for-export.glb"
@@ -162,8 +164,10 @@ export function NighthawksModel(props) {
             castShadow
             receiveShadow
             geometry={nodes.Mesh_7.geometry}
-            material={materials.metal}
-          />
+
+          >
+            <meshMatcapMaterial matcap={metalMatCap} flatShading={false}/>
+          </mesh>
           <mesh
             name="Mesh_8"
             castShadow

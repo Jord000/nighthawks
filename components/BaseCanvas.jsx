@@ -5,6 +5,7 @@ import {
   Environment,
   OrbitControls,Sky,
   PointerLockControls,
+  ContactShadows
 } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -37,11 +38,10 @@ function BaseCanvas() {
           fov: 70,
           zoom: 1.1,
         }}
-      >
-
-      
-        <fog attach="fog" args={["#d0d0d0", 8, 35]} />
+      >     
+        <fog attach="fog" args={["#d000", 8, 35]} />
         <Lights />
+        <ContactShadows frames={1} position={[0, 0, 0]} blur={10} opacity={0.10} />
         <Environment files={"/clouds.exr"} background />
         <NighthawksModel />
         {/* <PointerLockControls selector="#move-around" /> */}
