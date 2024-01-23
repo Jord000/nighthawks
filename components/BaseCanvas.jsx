@@ -10,6 +10,7 @@ import {
   Bloom,
   DepthOfField,
   Noise,
+  Vignette
 } from "@react-three/postprocessing";
 
 function BaseCanvas() {
@@ -30,10 +31,10 @@ function BaseCanvas() {
       <Canvas
         shadows
         camera={{
-          position: [1, 1.6, 3],
+          position: [1.2, 1.8, 3],
           rotation: [
             THREE.MathUtils.degToRad(-20),
-            THREE.MathUtils.degToRad(40),
+            THREE.MathUtils.degToRad(42),
             THREE.MathUtils.degToRad(15),
           ],
           fov: 70,
@@ -53,7 +54,7 @@ function BaseCanvas() {
               luminanceThreshold={0}
               mipmapBlur
               luminanceSmoothing={0.0}
-              intensity={1}
+              intensity={0.7}
             />
             <DepthOfField
               target={[0, 0, 13]}
@@ -62,6 +63,7 @@ function BaseCanvas() {
               height={700}
             />
             <Noise opacity={0.02} />
+            <Vignette eskil={false} offset={0.1} darkness={1.0} />
           </EffectComposer>
           </Suspense>
       </Canvas>

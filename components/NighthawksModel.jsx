@@ -10,7 +10,7 @@ import {
 export function NighthawksModel(props) {
   const metalMatCap = useTexture("/metalmatcap1.png");
   const group = useRef();
-  
+
   const { nodes, materials, animations } = useGLTF(
     "/bar-enviro-for-export.glb"
   );
@@ -80,7 +80,7 @@ export function NighthawksModel(props) {
           geometry={nodes.ceiling.geometry}
           material={materials.ceiling}
         />
-         <group name="bar" position={[-0.08, 0.526, 0.105]}>
+        <group name="bar" position={[-0.08, 0.526, 0.105]}>
           <mesh
             name="Cube_1"
             castShadow
@@ -109,7 +109,6 @@ export function NighthawksModel(props) {
             geometry={nodes.Cube_4.geometry}
             material={materials.bartopLED}
           />
-
         </group>
         <mesh
           name="curve_wall"
@@ -329,6 +328,9 @@ export function NighthawksModel(props) {
           name="pieChart"
           position={[-2.27789855, 1.09064043, 0]}
           rotation={[-0.0233508, -0.40575488, -0.03035608]}
+          onPointerEnter={() => {
+            actions.pieChartAction.play();
+          }}
         >
           {/* <mesh
             name="Mesh"
@@ -361,6 +363,9 @@ export function NighthawksModel(props) {
         </group>
         <mesh
           name="newspaper"
+          onPointerEnter={() => {
+            actions.BezierCurveAction.play();
+          }}
           castShadow
           receiveShadow
           geometry={nodes.newspaper.geometry}
@@ -368,7 +373,22 @@ export function NighthawksModel(props) {
           position={[-1.20019758, 1.02019525, -0.00663512]}
           rotation={[-0.77247715, 0, 0]}
         />
-
+        <group name="sign" position={[-1.866, 2.27, -1.728]}>
+          <mesh
+            name="Torus001"
+            castShadow
+            receiveShadow
+            geometry={nodes.Torus001.geometry}
+            material={materials.neon2}
+          />
+          <mesh
+            name="Torus001_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.Torus001_1.geometry}
+            material={materials.neon1}
+          />
+        </group>
         <group
           name="vinyl"
           onPointerEnter={() => {
@@ -396,22 +416,6 @@ export function NighthawksModel(props) {
             receiveShadow
             geometry={nodes.Cylinder010_2.geometry}
             material={materials.vinyllabel}
-          />
-        </group>
-        <group name="sign" position={[-1.866, 2.27, -1.728]}>
-          <mesh
-            name="Torus001"
-            castShadow
-            receiveShadow
-            geometry={nodes.Torus001.geometry}
-            material={materials.neon2}
-          />
-          <mesh
-            name="Torus001_1"
-            castShadow
-            receiveShadow
-            geometry={nodes.Torus001_1.geometry}
-            material={materials.neon1}
           />
         </group>
       </group>
