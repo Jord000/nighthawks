@@ -10,6 +10,7 @@ import {
 export function NighthawksModel(props) {
   const metalMatCap = useTexture("/metalmatcap1.png");
   const group = useRef();
+  
   const { nodes, materials, animations } = useGLTF(
     "/bar-enviro-for-export.glb"
   );
@@ -178,6 +179,7 @@ export function NighthawksModel(props) {
             castShadow
             receiveShadow
             geometry={nodes.Mesh_8.geometry}
+            material={nodes.Mesh_8.material}
           >
             <meshMatcapMaterial matcap={metalMatCap} flatShading={false} />
           </mesh>
@@ -393,6 +395,22 @@ export function NighthawksModel(props) {
             receiveShadow
             geometry={nodes.Cylinder010_2.geometry}
             material={materials.vinyllabel}
+          />
+        </group>
+        <group name="sign" position={[-1.866, 2.27, -1.728]}>
+          <mesh
+            name="Torus001"
+            castShadow
+            receiveShadow
+            geometry={nodes.Torus001.geometry}
+            material={materials.neon2}
+          />
+          <mesh
+            name="Torus001_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.Torus001_1.geometry}
+            material={materials.neon1}
           />
         </group>
       </group>
