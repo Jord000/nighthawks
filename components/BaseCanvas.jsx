@@ -40,7 +40,7 @@ function BaseCanvas() {
           zoom: 1.1,
         }}
       >
-        {/* <Suspense fallback={<Loader />}> */}
+     <Suspense fallback={null}>
           <fog attach="fog" args={["#d10000", 8, 35]} />
           <Lights />
 
@@ -63,8 +63,9 @@ function BaseCanvas() {
             />
             <Noise opacity={0.02} />
           </EffectComposer>
-        {/* </Suspense> */}
+          </Suspense>
       </Canvas>
+      <Loader />
     </div>
   );
 }
