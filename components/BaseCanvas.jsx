@@ -1,15 +1,8 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
 import { NighthawksModel } from "./NighthawksModel";
-import {
-  Environment,
-  OrbitControls,
-  Sky,
-  PointerLockControls,
-  ContactShadows,
-  BakeShadows
-} from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import { Environment, OrbitControls, Loader } from "@react-three/drei";
+import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Lights from "./Lights";
 import {
@@ -47,29 +40,30 @@ function BaseCanvas() {
           zoom: 1.1,
         }}
       >
-        <fog attach="fog" args={["#d10000", 8, 35]} />
-        <Lights />
+        {/* <Suspense fallback={<Loader />}> */}
+          <fog attach="fog" args={["#d10000", 8, 35]} />
+          <Lights />
 
-        <Environment files={"/clouds.exr"} background />
-        <NighthawksModel />
-        {/* <PointerLockControls selector="#move-around" /> */}
-        {isCameraControl && <OrbitControls />}
-        <EffectComposer disableNormalPass>
-          <Bloom
-            luminanceThreshold={0}
-            mipmapBlur
-            luminanceSmoothing={0.0}
-            intensity={1}
-          />
-          <DepthOfField
-            target={[0, 0, 13]}
-            focalLength={0.3}
-            bokehScale={15}
-            height={700}
-          />
-          <Noise opacity={0.02} />
-        </EffectComposer>
-     
+          <Environment files={"/clouds.exr"} background />
+          <NighthawksModel />
+          {/* <PointerLockControls selector="#move-around" /> */}
+          {isCameraControl && <OrbitControls />}
+          <EffectComposer disableNormalPass>
+            <Bloom
+              luminanceThreshold={0}
+              mipmapBlur
+              luminanceSmoothing={0.0}
+              intensity={1}
+            />
+            <DepthOfField
+              target={[0, 0, 13]}
+              focalLength={0.3}
+              bokehScale={15}
+              height={700}
+            />
+            <Noise opacity={0.02} />
+          </EffectComposer>
+        {/* </Suspense> */}
       </Canvas>
     </div>
   );

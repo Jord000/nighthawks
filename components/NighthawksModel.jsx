@@ -80,7 +80,7 @@ export function NighthawksModel(props) {
           geometry={nodes.ceiling.geometry}
           material={materials.ceiling}
         />
-        <group name="bar">
+         <group name="bar" position={[-0.08, 0.526, 0.105]}>
           <mesh
             name="Cube_1"
             castShadow
@@ -109,6 +109,7 @@ export function NighthawksModel(props) {
             geometry={nodes.Cube_4.geometry}
             material={materials.bartopLED}
           />
+
         </group>
         <mesh
           name="curve_wall"
