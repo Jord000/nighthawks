@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   useGLTF,
   useAnimations,
@@ -6,23 +6,39 @@ import {
   meshPhysicalMaterial,
   useTexture,
 } from "@react-three/drei";
+import { LoopOnce } from "three";
+import {
+  Bloom,
+  EffectComposer,
+  ToneMapping,
+} from "@react-three/postprocessing";
 
 export function NighthawksModel(props) {
   const metalMatCap = useTexture("/metalmatcap1.png");
   const group = useRef();
+  const [hovered, hover] = useState(true)
 
   const { nodes, materials, animations } = useGLTF(
     "/bar-enviro-for-export.glb"
   );
-  const { actions } = useAnimations(animations, group);
+  const { actions, mixer } = useAnimations(animations, group);
 
   useEffect(() => {
-    console.log(actions);
+    console.log(mixer);
+    actions.BezierCurveAction.clampWhenFinished = true;
+    actions.BezierCurveAction.setLoop(LoopOnce, 1);
+    actions.pieChartAction.setLoop(LoopOnce, 1);
+    actions.pieChartAction.clampWhenFinished = true;
+    actions.CylinderAction.setLoop(LoopOnce, 1);
+    actions.CylinderAction.clampWhenFinished = true;
+
     actions.rigAction.play();
     actions.mariaRigAction.play();
     actions.glassinhandAction.play();
     actions.clothAction.play();
-  });
+    const glow = (e) => console.log(e, "finished");
+    mixer.addEventListener("finished", glow);
+  }, [mixer]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -124,7 +140,7 @@ export function NighthawksModel(props) {
           geometry={nodes.curve_ceiling.geometry}
           material={materials.walnut_wood_33_36_4K}
         />
-      <mesh
+        <mesh
           name="curve_glass"
           castShadow
           receiveShadow
@@ -132,7 +148,7 @@ export function NighthawksModel(props) {
           material={nodes.curve_glass.material}
         >
           <MeshTransmissionMaterial
-          metalness={0}
+            metalness={0}
             thickness={0}
             roughness={0}
             clearcoat={1}
@@ -141,7 +157,7 @@ export function NighthawksModel(props) {
             samples={16}
             anisotropicBlur={0.1}
             iridescenceIOR={1.25}
-             envMapIntensity={0}
+            envMapIntensity={0}
           />
         </mesh>
         <mesh
@@ -390,7 +406,9 @@ export function NighthawksModel(props) {
           name="vinyl"
           onPointerEnter={() => {
             actions.CylinderAction.play();
+            hover(true)
           }}
+          onPointerOut={() => hover(true)}
           position={[-0.6684292, 0.96610433, 0.00542845]}
         >
           <mesh
@@ -414,6 +432,7 @@ export function NighthawksModel(props) {
             geometry={nodes.Cylinder010_2.geometry}
             material={materials.vinyllabel}
           />
+    
         </group>
       </group>
     </group>

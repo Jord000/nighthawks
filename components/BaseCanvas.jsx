@@ -11,7 +11,9 @@ import {
   DepthOfField,
   Noise,
   Vignette,
+  ToneMapping
 } from "@react-three/postprocessing";
+import { ToneMappingMode } from 'postprocessing'
 import SceneClouds from "./SceneClouds";
 
 function BaseCanvas() {
@@ -52,10 +54,10 @@ function BaseCanvas() {
           {isCameraControl && <OrbitControls />}
           <EffectComposer disableNormalPass>
             <Bloom
-              luminanceThreshold={0}
+              luminanceThreshold={0.0}
               mipmapBlur
               luminanceSmoothing={0.0}
-              intensity={0.7}
+              intensity={0.35}
             />
             <DepthOfField
               target={[0, 0, 13]}
@@ -63,6 +65,7 @@ function BaseCanvas() {
               bokehScale={15}
               height={700}
             />
+            <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
             <Noise opacity={0.02} />
             <Vignette eskil={false} offset={0.1} darkness={1.0} />
           </EffectComposer>
