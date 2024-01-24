@@ -14,6 +14,7 @@ import {
 } from "@react-three/postprocessing";
 import Vinyl from "./Vinyl";
 import NewsPaper from "./NewsPaper";
+import PieChart from "./PieChart";
 
 export function NighthawksModel(props) {
   const metalMatCap = useTexture("/metalmatcap1.png");
@@ -338,44 +339,6 @@ export function NighthawksModel(props) {
             clearcoat={0.8}
           />
         </mesh>
-        <group
-          name="pieChart"
-          position={[-2.27789855, 1.09064043, 0]}
-          rotation={[-0.0233508, -0.40575488, -0.03035608]}
-          onPointerEnter={() => {
-            actions.pieChartAction.play();
-          }}
-        >
-          {/* <mesh
-            name="Mesh"
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh.geometry}
-            material={materials.pie1}
-          /> */}
-          {/* <mesh
-            name="Mesh_1"
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh_1.geometry}
-            material={materials.pie2}
-          /> */}
-          <mesh
-            name="Mesh_2"
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh_2.geometry}
-            material={materials.pie3}
-          />
-          <mesh
-            name="Mesh_3"
-            castShadow
-            receiveShadow
-            geometry={nodes.Mesh_3.geometry}
-            material={materials.pie4}
-          />
-        </group>
-   
         <group name="sign" position={[-1.866, 2.27, -1.728]}>
           <mesh
             name="Torus001"
@@ -395,6 +358,8 @@ export function NighthawksModel(props) {
 
         <Vinyl nodes={nodes} materials={materials} actions={actions} />
         <NewsPaper nodes={nodes} materials={materials} actions={actions} />
+        <PieChart nodes={nodes} materials={materials} actions={actions} />
+        {console.log(nodes)}
       </group>
     </group>
   );
