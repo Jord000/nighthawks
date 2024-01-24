@@ -124,14 +124,12 @@ export function NighthawksModel(props) {
           geometry={nodes.curve_ceiling.geometry}
           material={materials.walnut_wood_33_36_4K}
         />
-        <mesh
+      <mesh
           name="curve_glass"
           castShadow
           receiveShadow
           geometry={nodes.curve_glass.geometry}
-          material={materials.glass}
-          position={[0.786, 0.25, 0.693]}
-          scale={[3.594, 0.25, 3.594]}
+          material={nodes.curve_glass.material}
         >
           <MeshTransmissionMaterial
           metalness={0}
@@ -338,13 +336,13 @@ export function NighthawksModel(props) {
             geometry={nodes.Mesh.geometry}
             material={materials.pie1}
           /> */}
-          <mesh
+          {/* <mesh
             name="Mesh_1"
             castShadow
             receiveShadow
             geometry={nodes.Mesh_1.geometry}
             material={materials.pie2}
-          />
+          /> */}
           <mesh
             name="Mesh_2"
             castShadow
