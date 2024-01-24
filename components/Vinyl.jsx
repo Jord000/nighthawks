@@ -2,15 +2,15 @@ import { useState } from "react";
 
 
 function Vinyl({nodes, materials, actions}) {
-  const [hovered, hover] = useState(true);
+  const [hovered, hover] = useState(false);
   return (
     <group
       name="vinyl"
       onPointerEnter={() => {
         actions.CylinderAction.play();
-        hover(false);
+        hover(true);
       }}
-      onPointerOut={() => hover(true)}
+      onPointerOut={() => hover(false)}
       position={[-0.6684292, 0.96610433, 0.00542845]}
     >
       <mesh
@@ -18,11 +18,12 @@ function Vinyl({nodes, materials, actions}) {
         castShadow
         receiveShadow
         geometry={nodes.Cylinder010.geometry}
+        
       >
         <meshStandardMaterial
           color={"black"}
           emissive={"hotpink"}
-          emissiveIntensity={!hovered ? 5 : 0}
+          emissiveIntensity={hovered ? 5 : 0}
           toneMapped={false}
         />
       </mesh>

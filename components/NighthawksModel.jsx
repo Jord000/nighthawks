@@ -13,6 +13,7 @@ import {
   ToneMapping,
 } from "@react-three/postprocessing";
 import Vinyl from "./Vinyl";
+import NewsPaper from "./NewsPaper";
 
 export function NighthawksModel(props) {
   const metalMatCap = useTexture("/metalmatcap1.png");
@@ -374,18 +375,7 @@ export function NighthawksModel(props) {
             material={materials.pie4}
           />
         </group>
-        <mesh
-          name="newspaper"
-          onPointerEnter={() => {
-            actions.BezierCurveAction.play();
-          }}
-          castShadow
-          receiveShadow
-          geometry={nodes.newspaper.geometry}
-          material={materials.newspaper}
-          position={[-1.20019758, 1.02019525, -0.00663512]}
-          rotation={[-0.77247715, 0, 0]}
-        />
+   
         <group name="sign" position={[-1.866, 2.27, -1.728]}>
           <mesh
             name="Torus001"
@@ -402,8 +392,9 @@ export function NighthawksModel(props) {
             material={materials.neon1}
           />
         </group>
-        {console.log(nodes)}
+
         <Vinyl nodes={nodes} materials={materials} actions={actions} />
+        <NewsPaper nodes={nodes} materials={materials} actions={actions} />
       </group>
     </group>
   );
