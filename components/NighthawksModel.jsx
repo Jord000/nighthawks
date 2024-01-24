@@ -16,7 +16,7 @@ import {
 export function NighthawksModel(props) {
   const metalMatCap = useTexture("/metalmatcap1.png");
   const group = useRef();
-  const [hovered, hover] = useState(true)
+  const [hovered, hover] = useState(true);
 
   const { nodes, materials, animations } = useGLTF(
     "/bar-enviro-for-export.glb"
@@ -406,7 +406,7 @@ export function NighthawksModel(props) {
           name="vinyl"
           onPointerEnter={() => {
             actions.CylinderAction.play();
-            hover(true)
+            hover(false);
           }}
           onPointerOut={() => hover(true)}
           position={[-0.6684292, 0.96610433, 0.00542845]}
@@ -416,8 +416,14 @@ export function NighthawksModel(props) {
             castShadow
             receiveShadow
             geometry={nodes.Cylinder010.geometry}
-            material={materials["black plastic"]}
-          />
+          >
+            <meshStandardMaterial
+              color={'black'}
+              emissive={'hotpink'}
+              emissiveIntensity={!hovered ? 5 : 0}
+              toneMapped={false}
+            />
+          </mesh>
           <mesh
             name="Cylinder010_1"
             castShadow
@@ -432,7 +438,6 @@ export function NighthawksModel(props) {
             geometry={nodes.Cylinder010_2.geometry}
             material={materials.vinyllabel}
           />
-    
         </group>
       </group>
     </group>

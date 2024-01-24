@@ -47,17 +47,13 @@ function BaseCanvas() {
         <Suspense fallback={null}>
           <fog attach="fog" args={["#d10000", 8, 35]} />
           <Lights />
-          <SceneClouds />
-          <Environment files={"/clouds.exr"} background />
-          <NighthawksModel />
-          {/* <PointerLockControls selector="#move-around" /> */}
-          {isCameraControl && <OrbitControls />}
           <EffectComposer disableNormalPass>
             <Bloom
-              luminanceThreshold={0.0}
+              luminanceThreshold={1}
               mipmapBlur
-              luminanceSmoothing={0.0}
-              intensity={0.35}
+
+              intensity={0.35*4}
+              levels={8}
             />
             <DepthOfField
               target={[0, 0, 13]}
@@ -69,6 +65,11 @@ function BaseCanvas() {
             <Noise opacity={0.02} />
             <Vignette eskil={false} offset={0.1} darkness={1.0} />
           </EffectComposer>
+          <SceneClouds />
+          <Environment files={"/clouds.exr"} background />
+          <NighthawksModel />
+          {/* <PointerLockControls selector="#move-around" /> */}
+          {isCameraControl && <OrbitControls />}
         </Suspense>
       </Canvas>
       <Loader />
