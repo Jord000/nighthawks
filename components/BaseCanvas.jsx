@@ -10,8 +10,9 @@ import {
   Bloom,
   DepthOfField,
   Noise,
-  Vignette
+  Vignette,
 } from "@react-three/postprocessing";
+import SceneClouds from "./SceneClouds";
 
 function BaseCanvas() {
   const moveRef = useRef(null);
@@ -41,10 +42,10 @@ function BaseCanvas() {
           zoom: 1.1,
         }}
       >
-     <Suspense fallback={null}>
+        <Suspense fallback={null}>
           <fog attach="fog" args={["#d10000", 8, 35]} />
           <Lights />
-
+          <SceneClouds />
           <Environment files={"/clouds.exr"} background />
           <NighthawksModel />
           {/* <PointerLockControls selector="#move-around" /> */}
@@ -65,7 +66,7 @@ function BaseCanvas() {
             <Noise opacity={0.02} />
             <Vignette eskil={false} offset={0.1} darkness={1.0} />
           </EffectComposer>
-          </Suspense>
+        </Suspense>
       </Canvas>
       <Loader />
     </div>
