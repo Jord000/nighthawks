@@ -1,17 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   useGLTF,
   useAnimations,
   MeshTransmissionMaterial,
-  meshPhysicalMaterial,
   useTexture,
 } from "@react-three/drei";
-import { LoopOnce } from "three";
-import {
-  Bloom,
-  EffectComposer,
-  ToneMapping,
-} from "@react-three/postprocessing";
+
 import Vinyl from "./Vinyl";
 import NewsPaper from "./NewsPaper";
 import PieChart from "./PieChart";
@@ -26,20 +20,10 @@ export function NighthawksModel(props) {
   const { actions, mixer } = useAnimations(animations, group);
 
   useEffect(() => {
-    console.log(mixer);
-    actions.BezierCurveAction.clampWhenFinished = true;
-    actions.BezierCurveAction.setLoop(LoopOnce, 1);
-    actions.pieChartAction.setLoop(LoopOnce, 1);
-    actions.pieChartAction.clampWhenFinished = true;
-    actions.CylinderAction.setLoop(LoopOnce, 1);
-    actions.CylinderAction.clampWhenFinished = true;
-
     actions.rigAction.play();
     actions.mariaRigAction.play();
     actions.glassinhandAction.play();
     actions.clothAction.play();
-    const glow = (e) => console.log(e, "finished");
-    mixer.addEventListener("finished", glow);
   }, [mixer]);
 
   return (
@@ -359,7 +343,6 @@ export function NighthawksModel(props) {
         <Vinyl nodes={nodes} materials={materials} actions={actions} />
         <NewsPaper nodes={nodes} materials={materials} actions={actions} />
         <PieChart nodes={nodes} materials={materials} actions={actions} />
-        {console.log(nodes)}
       </group>
     </group>
   );

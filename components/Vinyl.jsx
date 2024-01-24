@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { LoopOnce } from "three";
 
-
-function Vinyl({nodes, materials, actions}) {
+function Vinyl({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
+
+  useEffect(() => {
+    actions.CylinderAction.setLoop(LoopOnce, 1);
+    actions.CylinderAction.clampWhenFinished = true;
+  }, []);
+
   return (
     <group
       name="vinyl"
@@ -18,7 +24,6 @@ function Vinyl({nodes, materials, actions}) {
         castShadow
         receiveShadow
         geometry={nodes.Cylinder010.geometry}
-        
       >
         <meshStandardMaterial
           color={"black"}
@@ -45,4 +50,4 @@ function Vinyl({nodes, materials, actions}) {
   );
 }
 
-export default Vinyl
+export default Vinyl;

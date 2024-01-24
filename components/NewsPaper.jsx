@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { LoopOnce } from "three";
 
 function NewsPaper({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
+
+  useEffect(() => {
+    actions.BezierCurveAction.clampWhenFinished = true;
+    actions.BezierCurveAction.setLoop(LoopOnce, 1);
+  }, []);
+
   return (
     <mesh
       name="newspaper"
