@@ -134,6 +134,7 @@ export function NighthawksModel(props) {
           scale={[3.594, 0.25, 3.594]}
         >
           <MeshTransmissionMaterial
+          metalness={0}
             thickness={0}
             roughness={0}
             clearcoat={1}
@@ -141,10 +142,8 @@ export function NighthawksModel(props) {
             transmission={1}
             samples={16}
             anisotropicBlur={0.1}
-            iridescence={1}
             iridescenceIOR={1.25}
-            iridescenceThicknessRange={[0, 1400]}
-            envMapIntensity={1}
+             envMapIntensity={0}
           />
         </mesh>
         <mesh

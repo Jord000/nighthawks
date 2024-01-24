@@ -23,7 +23,7 @@ function SceneClouds() {
           scale={0.7}
           volume={2}
           color="white"
-          position={[-6,0,-3]}
+          position={[-6.5,0,-3]}
         />
         <Cloud
           seed={1}
@@ -32,7 +32,7 @@ function SceneClouds() {
           scale={0.9}
           volume={1}
           color="white"
-          position={[-6,0,3]}
+          position={[-6.5,0,3]}
         />
       </Clouds>
     </group>
