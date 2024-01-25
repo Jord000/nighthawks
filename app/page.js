@@ -1,10 +1,11 @@
+import AnimatedText from "@/components/AnimatedText";
 import BaseCanvas from "@/components/BaseCanvas";
 
 
 export default function Home() {
   return (
     <main className="flex h-screen flex-col items-center">
-      <h1>THIS IS MY 3D SITE</h1>
+      <AnimatedText text="Jordan Watson Software Developer"/>
       <BaseCanvas/>
     </main>
   )
