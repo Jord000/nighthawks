@@ -1,14 +1,23 @@
-'use client'
-import {motion} from "framer-motion"
+"use client";
+import { motion } from "framer-motion";
 
-function AnimatedText({text}) {
+const textAnimations = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+  },
+};
+
+function AnimatedText({ text }) {
   return (
-  
-  <motion.span>
-  {text.split('').map((letter)=>{
-    return <motion.span initial={{opacity:0}} animate={{opacity:1}}>{letter}</motion.span>
-  })}
-  </motion.span>)
+    <motion.span initial="hidden" animate="visible" transition={{staggerChildren:0.08}}>
+      {text.split("").map((letter) => {
+        return <motion.span variants={textAnimations}>{letter}</motion.span>;
+      })}
+    </motion.span>
+  );
 }
 
 export default AnimatedText;
