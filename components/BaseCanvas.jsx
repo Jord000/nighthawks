@@ -2,7 +2,7 @@
 import { Canvas } from '@react-three/fiber'
 import { NighthawksModel } from './NighthawksModel'
 import { Environment, OrbitControls } from '@react-three/drei'
-import { Suspense, useEffect, useRef, useState } from 'react'
+import { Suspense, useContext, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import Lights from './Lights'
 import {
@@ -16,11 +16,10 @@ import {
 import { ToneMappingMode } from 'postprocessing'
 import SceneClouds from './SceneClouds'
 import LoadingScreen from './LoadingScreen'
+import { LoadedContext } from '@/contexts/LoadedContext'
 
 function BaseCanvas() {
-  const moveRef = useRef(null)
-  const [start, setStart] = useState(false)
-
+  const { isLoaded } = useContext(LoadedContext)
   const [isCameraControl, setIsCameraControl] = useState(false)
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function BaseCanvas() {
       >
         <fog attach="fog" args={['#d10000', 8, 35]} />
         <Suspense fallback={null}>
-          {start && (
+          {isLoaded && (
             <>
               <Lights />
               <SceneClouds />
@@ -78,7 +77,7 @@ function BaseCanvas() {
         {/* <PointerLockControls selector="#move-around" /> */}
         {isCameraControl && <OrbitControls />}
       </Canvas>
-      <LoadingScreen start={start} setStart={setStart} />
+      <LoadingScreen  />
     </div>
   )
 }

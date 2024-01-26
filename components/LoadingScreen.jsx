@@ -1,15 +1,21 @@
+import { LoadedContext } from '@/contexts/LoadedContext'
 import { useProgress } from '@react-three/drei'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 
-function LoadingScreen({ start, setStart }) {
+function LoadingScreen() {
+  const { isLoaded, setIsLoaded } = useContext(LoadedContext)
   const { progress } = useProgress()
   useEffect(() => {
     if (progress === 100) {
-      setStart(true)
+      setIsLoaded(true)
     }
   }, [progress])
   return (
-    <div className={`text-white loading-screen ${start ? 'loading-screen--started' : ''}`}>
+    <div
+      className={`text-white loading-screen ${
+        isLoaded ? 'loading-screen--started' : ''
+      }`}
+    >
       <p className=" text-white text-4xl text-center mb-10">
         Welcome, thank you for waiting while the 3D models load
       </p>
