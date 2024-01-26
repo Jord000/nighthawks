@@ -1,17 +1,13 @@
 "use client";
 import {
   AccumulativeShadows,
-  ContactShadows,
   RandomizedLight,
   useHelper,
 } from "@react-three/drei";
 import { useRef } from "react";
 import {
   DirectionalLightHelper,
-  PointLightHelper,
-  SpotLightHelper,
 } from "three";
-import { useControls } from "leva";
 
 function Lights() {
   const directionalLight = useRef();
