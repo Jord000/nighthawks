@@ -1,6 +1,7 @@
 import AnimatedText from '@/components/AnimatedText'
 import BaseCanvas from '@/components/BaseCanvas'
-import { LoadedProvider } from '@/contexts/LoadedContext'
+import { LoadedContext, LoadedProvider } from '@/contexts/LoadedContext'
+import { useContext } from 'react'
 
 export default function Home() {
   return (
