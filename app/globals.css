@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 210, 208, 255;
@@ -39,9 +41,11 @@ body {
   justify-content: center;
   transition: opacity 5s;
   z-index: 1;
-  background-color: #1A1D1E;
+  background-color: #111213;
   flex-direction: column;
   padding: 30px;
+  font-family: 'Solway';
+
 }
 
 .loading-screen--started{
