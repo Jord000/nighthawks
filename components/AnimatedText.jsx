@@ -31,7 +31,7 @@ function AnimatedText({ text }) {
         <motion.div
           initial="hidden"
           animate="visible"
-          className="absolute z-10 top-4 left-8"
+          className="absolute z-10 top-32 left-8"
           transition={{ staggerChildren: 0.08 }}
         >
           {textArray.map((line,index) => {
