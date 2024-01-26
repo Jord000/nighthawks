@@ -1,12 +1,7 @@
 'use client'
 import { Canvas } from '@react-three/fiber'
 import { NighthawksModel } from './NighthawksModel'
-import {
-  Environment,
-  OrbitControls,
-  Loader,
-  ContactShadows,
-} from '@react-three/drei'
+import { Environment, OrbitControls } from '@react-three/drei'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import Lights from './Lights'
@@ -83,7 +78,7 @@ function BaseCanvas() {
         {/* <PointerLockControls selector="#move-around" /> */}
         {isCameraControl && <OrbitControls />}
       </Canvas>
-      <LoadingScreen start={start} setStart={setStart}/>
+      <LoadingScreen start={start} setStart={setStart} />
     </div>
   )
 }

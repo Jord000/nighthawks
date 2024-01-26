@@ -1,7 +1,7 @@
 import { useProgress } from '@react-three/drei'
 import { useEffect } from 'react'
 
-function LoadingScreen({start, setStart }) {
+function LoadingScreen({ start, setStart }) {
   const { progress } = useProgress()
   useEffect(() => {
     if (progress === 100) {
@@ -9,8 +9,11 @@ function LoadingScreen({start, setStart }) {
     }
   }, [progress])
   return (
-    <div className={`loading-screen ${start ? "loading-screen--started" : ""}`}>
-      <p>{`${progress} Loaded`}</p>
+    <div className={`text-white loading-screen ${start ? 'loading-screen--started' : ''}`}>
+      <p className=" text-white text-4xl text-center mb-10">
+        Welcome, thank you for waiting while the 3D models load
+      </p>
+      <p className="text-4xl text-center">{`${progress}% Loaded`}</p>
     </div>
   )
 }
