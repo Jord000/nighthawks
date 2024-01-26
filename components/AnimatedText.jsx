@@ -13,8 +13,8 @@ const textAnimations = {
 function AnimatedText({ text }) {
   return (
     <motion.span initial="hidden" animate="visible" transition={{staggerChildren:0.08}}>
-      {text.split("").map((letter) => {
-        return <motion.span variants={textAnimations}>{letter}</motion.span>;
+      {text.split("").map((letter,index) => {
+        return <motion.span key={index} variants={textAnimations}>{letter}</motion.span>;
       })}
     </motion.span>
   );

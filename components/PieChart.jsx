@@ -24,7 +24,7 @@ function PieChart({ nodes, materials, actions }) {
         name="Mesh"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_5.geometry}
+        geometry={nodes.Mesh_7.geometry}
         material={materials.pie1}
       >
         {hovered && (
@@ -53,10 +53,10 @@ function PieChart({ nodes, materials, actions }) {
         )}
       </mesh>
       <mesh
-        name="Mesh_2"
+        name="Mesh_5"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_2.geometry}
+        geometry={nodes.Mesh_5.geometry}
         material={materials.pie3}
       >
         {hovered && (
@@ -69,10 +69,10 @@ function PieChart({ nodes, materials, actions }) {
         )}
       </mesh>
       <mesh
-        name="Mesh_3"
+        name="Mesh_6"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_3.geometry}
+        geometry={nodes.Mesh_6.geometry}
         material={materials.pie4}
       >
         {hovered && (
