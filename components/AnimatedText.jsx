@@ -15,6 +15,7 @@ const textAnimations = {
 function AnimatedText({ text }) {
   const { isLoaded } = useContext(LoadedContext)
   const [isTimerComplete, setIsTimerComplete] = useState(false)
+  const textArray = Array.isArray(text) ? text : [text]
 
   useEffect(() => {
     if (isLoaded) {
@@ -26,22 +27,39 @@ function AnimatedText({ text }) {
 
   return (
     <>
-      {isLoaded &&
-        isTimerComplete &&(
-          <motion.span
-            initial="hidden"
-            animate="visible"
-            transition={{ staggerChildren: 0.08 }}
-          >
-            {text.split('').map((letter, index) => {
-              return (
-                <motion.span key={index} variants={textAnimations}>
-                  {letter}
-                </motion.span>
-              )
-            })}
-          </motion.span>
-        )}
+      {isLoaded && isTimerComplete && (
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          className="absolute inset-10 z-10"
+          transition={{ staggerChildren: 0.08 }}
+        >
+          {textArray.map((line,index) => {
+            return (
+              <span className="block" key={index}>
+                {line.split(' ').map((word, index) => {
+                  return (
+                    <span className="inline-block" key={index}>
+                      {word.split('').map((letter, index) => {
+                        return (
+                          <motion.span
+                            className="text-white text-2xl"
+                            key={index}
+                            variants={textAnimations}
+                          >
+                            {letter}
+                          </motion.span>
+                        )
+                      })}
+                      <span className='inline-block'>&nbsp;</span>
+                    </span>
+                  )
+                })}
+              </span>
+            )
+          })}
+        </motion.div>
+      )}
     </>
   )
 }
