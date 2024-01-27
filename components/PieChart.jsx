@@ -1,5 +1,8 @@
+import { openInNewTab } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import { LoopOnce } from "three";
+
+
 
 function PieChart({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
@@ -19,6 +22,7 @@ function PieChart({ nodes, materials, actions }) {
         actions.pieChartAction.play();
       }}
       onPointerOut={() => hover(false)}
+      onClick={() => openInNewTab('https://carbon-data-pie.netlify.app/')}
     >
       <mesh
         name="Mesh"
