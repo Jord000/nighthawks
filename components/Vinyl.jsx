@@ -1,3 +1,4 @@
+import { openInNewTab } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import { LoopOnce } from "three";
 
@@ -12,11 +13,12 @@ function Vinyl({ nodes, materials, actions }) {
   return (
     <group
       name="vinyl"
-      onPointerEnter={() => {
+      onPointerOver={() => {
         actions.CylinderAction.play();
         hover(true);
       }}
       onPointerOut={() => hover(false)}
+      onClick={() => openInNewTab('https://github.com/Jord000/wax-frontend/blob/main/README.md')}
       position={[-0.6684292, 0.96610433, 0.00542845]}
     >
       <mesh

@@ -17,7 +17,7 @@ function PieChart({ nodes, materials, actions }) {
       name="pieChart"
       position={[-2.27789855, 1.09064043, 0]}
       rotation={[-0.0233508, -0.40575488, -0.03035608]}
-      onPointerEnter={() => {
+      onPointerOver={() => {
         hover(true);
         actions.pieChartAction.play();
       }}
