@@ -12,7 +12,7 @@ function AnimatedDiv({ children }) {
     if (isLoaded) {
       setTimeout(() => {
         setIsTimerComplete(true);
-      }, 5000);
+      }, 7000);
     }
   }, [isLoaded]);
 
@@ -21,14 +21,23 @@ function AnimatedDiv({ children }) {
       {isMobile && isTimerComplete && isLoaded && (
         <motion.div
           initial={{ y: -200 }}
-          animate={{ y: 20 }}
-          transition={{ delay: 1 }}
-          className="bg-[#D2D4F5] absolute z-10 ml-auto mr-auto min-h-[17%] w-[90%] p-4 opacity-90 border-solid rounded drop-shadow"
+          animate={{ y: 24 }}
+          transition={{ delay: 1 ,duration:1.0}}
+          className="bg-[#EFEFF8] absolute z-10 ml-auto mr-auto min-h-[17%] w-[90%] p-4 opacity-80 border-solid rounded drop-shadow"
         >
           {children}
         </motion.div>
       )}
-      {!isMobile && <>{children}</>}
+      {!isMobile && isTimerComplete && isLoaded && (
+        <motion.div
+          initial={{ x: -1000 }}
+          animate={{ x: '2%' }}
+          transition={{ delay: 1,duration:1.5 }}
+          className="bg-[#EFEFF8] absolute z-10 mt-[2%] mb-auto min-h-[20%] min-w-[36%] p-2 opacity-80 border-solid rounded drop-shadow"
+        >
+          {children}
+        </motion.div>
+      )}
     </>
   );
 }

@@ -7,7 +7,7 @@ import { LoadedProvider } from "@/contexts/LoadedContext";
 export default function Home() {
 
   return (
-    <main className="flex h-screen flex-col items-center">
+    <main className="flex h-screen flex-col items-center md:flex-none md:items-start">
       <LoadedProvider>
         <AnimatedDiv>
           <AnimatedText
@@ -15,7 +15,7 @@ export default function Home() {
               "Jordan Watson",
               "Software Developer",
               " ",
-              "...Hover over one of the items on the bar",
+              "Hover over one of the items on the bar",
               "click one to jump to one of my projects",
             ]}
           />

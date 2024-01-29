@@ -17,9 +17,8 @@ function AnimatedText({ text }) {
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
-  const [textSize, setTextSize] = useState('text-white text-1xl')
-  const [position, setPosition] = useState("absolute z-10 top-32 left-8")
-
+  const [textSize, setTextSize] = useState('text-black text-xl')
+  
   useEffect(() => {
     if (isLoaded) {
        setTimeout(() => {
@@ -28,7 +27,7 @@ function AnimatedText({ text }) {
     }
     if(isMobile){
       setTextSize('text-black text-base')
-      setPosition("")
+
     }
   }, [isLoaded])
 
@@ -38,8 +37,7 @@ function AnimatedText({ text }) {
         <motion.div
           initial="hidden"
           animate="visible"
-          className={position}
-          transition={{ staggerChildren: 0.08 }}
+           transition={{ staggerChildren: 0.08 }}
         >
           {textArray.map((line,index) => {
             return (
