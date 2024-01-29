@@ -33,7 +33,7 @@ function AnimatedDiv({ children }) {
           initial={{ x: -1000 }}
           animate={{ x: '2%' }}
           transition={{ delay: 1,duration:1.5 }}
-          className="bg-[#EFEFF8] absolute z-10 mt-[2%] mb-auto min-h-[20%] min-w-[36%] p-2 opacity-80 border-solid rounded drop-shadow"
+          className="bg-[#EFEFF8] absolute z-10 mt-[2%] mb-auto min-h-[20%] min-w-[40px] p-2 opacity-95 border-solid rounded drop-shadow"
         >
           {children}
         </motion.div>

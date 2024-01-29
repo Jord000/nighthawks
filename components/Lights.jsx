@@ -32,8 +32,9 @@ function Lights() {
           bias={0.001}
         />
       </AccumulativeShadows>
-      <hemisphereLight args={["#fff", "#333", 3]} />
+      <hemisphereLight args={["#E3DAFC", "#333", 3]} />
       <spotLight
+      color={'#7754DA'}
         position={[3, 2.2, 3]}
         angle={0.4}
         penumbra={1}
@@ -42,10 +43,11 @@ function Lights() {
         shadow-mapSize={1024}
       />
       <directionalLight
+       color={'#7754DA'}
         position={[-2, 2, 1.5]}
         angle={0.1}
         target-position={[-1, 2, -2]}
-        intensity={1}
+        intensity={10}
         castShadow
         shadow-mapSize={1024}
       />

@@ -16,7 +16,7 @@ export default function Home() {
               "Software Developer",
               " ",
               "Hover over one of the items on the bar",
-              "click one to jump to one of my projects",
+              "click an item to jump to one of my projects",
             ]}
           />
         </AnimatedDiv>

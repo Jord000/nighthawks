@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+*{
+  font-family: 'Solway';
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;

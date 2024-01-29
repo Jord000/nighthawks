@@ -1,10 +1,10 @@
-'use client'
-import { Canvas } from '@react-three/fiber'
-import { NighthawksModel } from './NighthawksModel'
-import { Environment, OrbitControls } from '@react-three/drei'
-import { Suspense, useContext, useEffect, useRef, useState } from 'react'
-import * as THREE from 'three'
-import Lights from './Lights'
+"use client";
+import { Canvas } from "@react-three/fiber";
+import { NighthawksModel } from "./NighthawksModel";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Suspense, useContext, useEffect, useState } from "react";
+import * as THREE from "three";
+import Lights from "./Lights";
 import {
   EffectComposer,
   Bloom,
@@ -12,23 +12,24 @@ import {
   Noise,
   Vignette,
   ToneMapping,
-} from '@react-three/postprocessing'
-import { ToneMappingMode } from 'postprocessing'
-import SceneClouds from './SceneClouds'
-import LoadingScreen from './LoadingScreen'
-import { LoadedContext } from '@/contexts/LoadedContext'
+} from "@react-three/postprocessing";
+import { ToneMappingMode } from "postprocessing";
+import SceneClouds from "./SceneClouds";
+import LoadingScreen from "./LoadingScreen";
+import { LoadedContext } from "@/contexts/LoadedContext";
+import FollowMouse from "./FollowMouse";
 
 function BaseCanvas() {
-  const { isLoaded } = useContext(LoadedContext)
-  const [isCameraControl, setIsCameraControl] = useState(false)
+  const { isLoaded } = useContext(LoadedContext);
+  const [isCameraControl, setIsCameraControl] = useState(false);
 
   useEffect(() => {
-    document.addEventListener('keydown', (event) => {
-      if (event.code === 'KeyO') {
-        setIsCameraControl(!isCameraControl)
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "KeyO") {
+        setIsCameraControl(!isCameraControl);
       }
-    })
-  })
+    });
+  });
 
   return (
     <div id="canvas-container" className="flex h-[100%] w-[100%]">
@@ -36,23 +37,19 @@ function BaseCanvas() {
         shadows
         camera={{
           position: [1.2, 1.8, 3],
-          rotation: [
-            THREE.MathUtils.degToRad(-20),
-            THREE.MathUtils.degToRad(42),
-            THREE.MathUtils.degToRad(15),
-          ],
-          fov: 70,
+           fov: 70,
           zoom: 1.1,
-        }}
+            }}
+ 
       >
-        <fog attach="fog" args={['#d10000', 8, 35]} />
+        <fog attach="fog" args={["#d10000", 8, 35]} />
         <Suspense fallback={null}>
           {isLoaded && (
             <>
               <Lights />
               <SceneClouds />
               <NighthawksModel />
-              <Environment files={'/clouds.exr'} background />
+              <Environment files={"/clouds.exr"} background />
             </>
           )}
         </Suspense>
@@ -76,10 +73,11 @@ function BaseCanvas() {
 
         {/* <PointerLockControls selector="#move-around" /> */}
         {isCameraControl && <OrbitControls />}
+        <FollowMouse />
       </Canvas>
-      <LoadingScreen  />
+      <LoadingScreen />
     </div>
-  )
+  );
 }
 
-export default BaseCanvas
+export default BaseCanvas;
