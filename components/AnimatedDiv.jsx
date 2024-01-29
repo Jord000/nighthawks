@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 
 function AnimatedDiv({ children }) {
   const { isLoaded } = useContext(LoadedContext);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
+  const windowCheck = window && window.innerWidth < 800
+  const [isMobile, setIsMobile] = useState(windowCheck);
   const [isTimerComplete, setIsTimerComplete] = useState(false);
 
   useEffect(() => {
