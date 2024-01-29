@@ -16,17 +16,21 @@ function AnimatedDiv({ children }) {
     }
   }, [isLoaded]);
 
-  return <>{isMobile && isTimerComplete && isLoaded &&
-    <motion.div
-      initial={{ y: -200 }}
-      animate={{ y: 20 }}
-      transition={{delay:1}}
-      className="bg-[#D2D4F5] absolute z-10 ml-auto mr-auto min-h-[16%] w-[90%] p-2 opacity-90 border-solid rounded drop-shadow"
-    >
-      {children}
-    </motion.div>
-}</>
-  
+  return (
+    <>
+      {isMobile && isTimerComplete && isLoaded && (
+        <motion.div
+          initial={{ y: -200 }}
+          animate={{ y: 20 }}
+          transition={{ delay: 1 }}
+          className="bg-[#D2D4F5] absolute z-10 ml-auto mr-auto min-h-[17%] w-[90%] p-4 opacity-90 border-solid rounded drop-shadow"
+        >
+          {children}
+        </motion.div>
+      )}
+      {!isMobile && <>{children}</>}
+    </>
+  );
 }
 
 export default AnimatedDiv;

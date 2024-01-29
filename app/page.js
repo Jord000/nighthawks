@@ -15,7 +15,7 @@ export default function Home() {
               "Jordan Watson",
               "Software Developer",
               " ",
-              "...hover over one of the items on the bar",
+              "...Hover over one of the items on the bar",
               "click one to jump to one of my projects",
             ]}
           />

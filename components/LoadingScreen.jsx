@@ -19,7 +19,7 @@ function LoadingScreen() {
       <p className=" text-white text-4xl text-center mb-10">
         Welcome, thank you for waiting while the 3D models load
       </p>
-      <p className="text-4xl text-center">{`${progress}% Loaded`}</p>
+      <p className="text-4xl text-center">{`${progress.toFixed(2)}% Loaded`}</p>
     </div>
   )
 }
