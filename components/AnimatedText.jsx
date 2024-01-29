@@ -16,18 +16,18 @@ function AnimatedText({ text }) {
   const { isLoaded } = useContext(LoadedContext)
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600)
-  const [textSize, setTextSize] = useState('text-2xl')
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
+  const [textSize, setTextSize] = useState('text-white text-2xl')
   const [position, setPosition] = useState("absolute z-10 top-32 left-8")
 
   useEffect(() => {
     if (isLoaded) {
-      setTimeout(() => {
+       setTimeout(() => {
         setIsTimerComplete(true)
-      }, 5000)
+      }, 2000)
     }
     if(isMobile){
-      setTextSize('text-base')
+      setTextSize('text-black text-base')
       setPosition("")
     }
   }, [isLoaded])
@@ -50,7 +50,7 @@ function AnimatedText({ text }) {
                       {word.split('').map((letter, index) => {
                         return (
                           <motion.span
-                            className={`text-white ${textSize}`}
+                            className={`${textSize}`}
                             key={index}
                             variants={textAnimations}
                           >

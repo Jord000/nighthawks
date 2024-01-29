@@ -5,7 +5,6 @@ import { LoopOnce } from "three";
 function PieChart({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
 
-  console.log(nodes);
   useEffect(() => {
     actions.pieChartAction.setLoop(LoopOnce, 1);
     actions.pieChartAction.clampWhenFinished = true;
