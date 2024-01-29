@@ -29,7 +29,7 @@ function SceneClouds() {
           bounds={[2, 2, 2]}
           scale={0.7}
           volume={2}
-          color="white"
+          color="#dac5ed"
           position={[-6.5, 0, -3]}
           ref={cloudRef1}
         />
@@ -39,7 +39,7 @@ function SceneClouds() {
           bounds={[2, 2, 2]}
           scale={1}
           volume={5}
-          color="white"
+          color="#d3e9f5"
           position={[-6, -1, 2]}
           ref={cloudRef2}
         />
