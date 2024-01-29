@@ -23,7 +23,7 @@ function AnimatedDiv({ children }) {
           initial={{ y: -200 }}
           animate={{ y: 24 }}
           transition={{ delay: 1 ,duration:1.0}}
-          className="bg-[#EFEFF8] absolute z-10 ml-auto mr-auto min-h-[17%] w-[90%] p-4 opacity-80 border-solid rounded drop-shadow"
+          className="bg-[#EFEFF8] absolute z-10 ml-auto mr-auto min-h-[17%] w-[90%] p-4 bg-opacity-80 border-solid rounded drop-shadow"
         >
           {children}
         </motion.div>
@@ -33,7 +33,7 @@ function AnimatedDiv({ children }) {
           initial={{ x: -1000 }}
           animate={{ x: '2%' }}
           transition={{ delay: 1,duration:1.5 }}
-          className="bg-[#EFEFF8] absolute z-10 mt-[2%] mb-auto min-h-[20%] min-w-[40px] p-2 opacity-95 border-solid rounded drop-shadow"
+          className="bg-[#EFEFF8] absolute z-10 mt-[5%] mb-auto min-h-[20%] min-w-[40px] p-2 bg-opacity-50 border-solid rounded drop-shadow"
         >
           {children}
         </motion.div>

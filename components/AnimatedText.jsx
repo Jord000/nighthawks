@@ -17,7 +17,7 @@ function AnimatedText({ text }) {
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
-  const [textSize, setTextSize] = useState('text-black text-xl')
+  const [textSize, setTextSize] = useState('text-black text-2xl')
   
   useEffect(() => {
     if (isLoaded) {

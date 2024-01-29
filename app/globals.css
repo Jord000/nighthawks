@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: BegnardSans;
+  src: url("../public/BagnardSans.otf") format("opentype");
+}
+
 *{
-  font-family: 'Solway';
+  font-family: 'BegnardSans';
 }
 
 :root {
@@ -46,7 +51,6 @@ body {
   background-color: #111213;
   flex-direction: column;
   padding: 30px;
-  font-family: 'Solway';
 
 }
 
