@@ -2,11 +2,10 @@ import { openInNewTab } from "@/utils/utils";
 import { useEffect, useState } from "react";
 import { LoopOnce } from "three";
 
-
-
 function PieChart({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
 
+  console.log(nodes);
   useEffect(() => {
     actions.pieChartAction.setLoop(LoopOnce, 1);
     actions.pieChartAction.clampWhenFinished = true;
@@ -22,13 +21,15 @@ function PieChart({ nodes, materials, actions }) {
         actions.pieChartAction.play();
       }}
       onPointerOut={() => hover(false)}
-      onClick={() => openInNewTab('https://carbon-data-pie.netlify.app/')}
+      onClick={() => openInNewTab("https://carbon-data-pie.netlify.app/")}
     >
       <mesh
-        name="Mesh"
+        name="Mesh_2"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_7.geometry}
+        geometry={
+          nodes.Mesh_6 ? nodes.Mesh_6.geometry : nodes.Mesh_2.geometry
+        }
         material={materials.pie1}
       >
         {hovered && (
@@ -41,10 +42,12 @@ function PieChart({ nodes, materials, actions }) {
         )}
       </mesh>
       <mesh
-        name="Mesh_4"
+        name="Mesh_3"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_4.geometry}
+        geometry={
+          nodes.Mesh_7 ? nodes.Mesh_7.geometry : nodes.Mesh_3.geometry
+        }
         material={materials.pie2}
       >
         {hovered && (
@@ -57,10 +60,10 @@ function PieChart({ nodes, materials, actions }) {
         )}
       </mesh>
       <mesh
-        name="Mesh_5"
+        name="Mesh_4"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_5.geometry}
+        geometry={nodes.Mesh_4.geometry}
         material={materials.pie3}
       >
         {hovered && (
@@ -73,10 +76,10 @@ function PieChart({ nodes, materials, actions }) {
         )}
       </mesh>
       <mesh
-        name="Mesh_6"
+        name="Mesh_5"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_6.geometry}
+        geometry={nodes.Mesh_5.geometry}
         material={materials.pie4}
       >
         {hovered && (

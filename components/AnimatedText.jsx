@@ -16,12 +16,19 @@ function AnimatedText({ text }) {
   const { isLoaded } = useContext(LoadedContext)
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600)
+  const [textSize, setTextSize] = useState('text-2xl')
+  const [position, setPosition] = useState("absolute z-10 top-32 left-8")
 
   useEffect(() => {
     if (isLoaded) {
       setTimeout(() => {
         setIsTimerComplete(true)
       }, 5000)
+    }
+    if(isMobile){
+      setTextSize('text-base')
+      setPosition("")
     }
   }, [isLoaded])
 
@@ -31,7 +38,7 @@ function AnimatedText({ text }) {
         <motion.div
           initial="hidden"
           animate="visible"
-          className="absolute z-10 top-32 left-8"
+          className={position}
           transition={{ staggerChildren: 0.08 }}
         >
           {textArray.map((line,index) => {
@@ -43,7 +50,7 @@ function AnimatedText({ text }) {
                       {word.split('').map((letter, index) => {
                         return (
                           <motion.span
-                            className="text-white text-2xl"
+                            className={`text-white ${textSize}`}
                             key={index}
                             variants={textAnimations}
                           >
