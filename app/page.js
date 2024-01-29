@@ -14,9 +14,8 @@ export default function Home() {
             text={[
               "Jordan Watson",
               "Software Developer",
-              " ",
-              "Hover over one of the items on the bar",
-              "click an item to jump to one of my projects",
+              "Hover over one of the items on the bar.",
+              "Click an item to jump to one of my projects",
             ]}
           />
         </AnimatedDiv>

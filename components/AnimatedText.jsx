@@ -17,7 +17,8 @@ function AnimatedText({ text }) {
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
-  const [textSize, setTextSize] = useState('text-black text-2xl')
+  const [textSize, setTextSize] = useState('text-black text-2xl leading-[2.5rem]')
+  const [textSizeAlt, setTextSizeAlt] = useState('text-black text-xl leading-[2.0rem]')
   
   useEffect(() => {
     if (isLoaded) {
@@ -26,7 +27,8 @@ function AnimatedText({ text }) {
       }, 2000)
     }
     if(isMobile){
-      setTextSize('text-black text-base')
+      setTextSize('text-black text-lg')
+      setTextSizeAlt('text-black text-sm')
 
     }
   }, [isLoaded])
@@ -40,16 +42,16 @@ function AnimatedText({ text }) {
            transition={{ staggerChildren: 0.08 }}
         >
           {textArray.map((line,index) => {
-            return (
-              <span className="block" key={index}>
+             return (
+              <span className={`block ${index<2?textSize:textSizeAlt} `} key={index}>
                 {line.split(' ').map((word, index) => {
-                  return (
+                                 return (
                     <span className="inline-block" key={index}>
                       {word.split('').map((letter, index) => {
+                
                         return (
                           <motion.span
-                            className={`${textSize}`}
-                            key={index}
+                                                       key={index}
                             variants={textAnimations}
                           >
                             {letter}
