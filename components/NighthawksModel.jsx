@@ -20,7 +20,8 @@ export function NighthawksModel(props) {
   const { actions, mixer } = useAnimations(animations, group);
 
   useEffect(() => {
-    actions.rigAction.play();
+ 
+    actions.texRig.play();
     actions.mariaRigAction.play();
     actions.glassinhandAction.play();
     actions.clothAction.play();

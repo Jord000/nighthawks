@@ -10,6 +10,7 @@ function PieChart({ nodes, materials, actions }) {
     actions.pieChartAction.clampWhenFinished = true;
   }, []);
 
+
   return (
     <group
       name="pieChart"

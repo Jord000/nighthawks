@@ -3,13 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: BegnardSans;
-  src: url("../public/BagnardSans.otf") format("opentype");
+  font-family: CosmicVibrant;
+  src: url("../public/CosmicVibrant.otf") format("opentype");
+  unicode-range: U+00-FF;
 }
 
 *{
-  font-family: 'BegnardSans';
-  font-weight: 900;
+  font-family: 'CosmicVibrant';
+  font-weight: 200;
+
 }
 
 :root {
@@ -52,7 +54,6 @@ body {
   background-color: #111213;
   flex-direction: column;
   padding: 30px;
-
 }
 
 .loading-screen--started{

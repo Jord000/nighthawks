@@ -17,8 +17,8 @@ function AnimatedText({ text }) {
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
   const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
-  const [textSize, setTextSize] = useState('text-black text-2xl leading-[2.5rem]')
-  const [textSizeAlt, setTextSizeAlt] = useState('text-black text-xl leading-[2.0rem]')
+  const [textSize, setTextSize] = useState('text-[#071a38] text-3xl leading-[4rem] ')
+  const [textSizeAlt, setTextSizeAlt] = useState('text-[#071a38] text-xl leading-[2.2rem]')
   
   useEffect(() => {
     if (isLoaded) {
@@ -27,8 +27,8 @@ function AnimatedText({ text }) {
       }, 2000)
     }
     if(isMobile){
-      setTextSize('text-black text-lg')
-      setTextSizeAlt('text-black text-sm')
+      setTextSize('text-[#071a38]  text-xl')
+      setTextSizeAlt('text-[#071a38]  text-sm')
 
     }
   }, [isLoaded])
