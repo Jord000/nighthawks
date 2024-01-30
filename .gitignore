@@ -38,3 +38,5 @@ next-env.d.ts
 # private assets
 models
 notes
+# Local Netlify folder
+.netlify
