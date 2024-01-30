@@ -23,7 +23,7 @@ function PieChart({ nodes, materials, actions }) {
       hover(true);
     }
   };
-
+console.log(nodes)
   useEffect(() => {
     actions.pieChartAction.setLoop(LoopOnce, 1);
     actions.pieChartAction.clampWhenFinished = true;
@@ -78,7 +78,7 @@ function PieChart({ nodes, materials, actions }) {
         name="Mesh_4"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_4.geometry}
+        geometry={nodes.Mesh_4 ? nodes.Mesh_4.geometry : nodes.Mesh.geometry}
         material={materials.pie3}
       >
         {hovered && (
