@@ -2,8 +2,7 @@
 import { Canvas } from "@react-three/fiber";
 import { NighthawksModel } from "./NighthawksModel";
 import { Environment, OrbitControls } from "@react-three/drei";
-import { Suspense, useContext, useEffect, useState } from "react";
-import * as THREE from "three";
+import { Suspense, useContext, useEffect } from "react";
 import Lights from "./Lights";
 import {
   EffectComposer,
@@ -18,18 +17,17 @@ import SceneClouds from "./SceneClouds";
 import LoadingScreen from "./LoadingScreen";
 import { LoadedContext } from "@/contexts/LoadedContext";
 import FollowMouse from "./FollowMouse";
+import { isMobileContext } from "@/contexts/isMobileContext";
 
 function BaseCanvas() {
   const { isLoaded } = useContext(LoadedContext);
-  const [isCameraControl, setIsCameraControl] = useState(false);
+  const { isMobile, setIsMobile } = useContext(isMobileContext);
 
   useEffect(() => {
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "KeyO") {
-        setIsCameraControl(!isCameraControl);
-      }
-    });
-  });
+    if (window.innerWidth < 800) {
+      setIsMobile(true);
+    }
+  }, [isLoaded]);
 
   return (
     <div id="canvas-container" className="flex h-[100%] w-[100%]">
@@ -37,10 +35,9 @@ function BaseCanvas() {
         shadows
         camera={{
           position: [1.2, 1.8, 3],
-           fov: 70,
+          fov: 70,
           zoom: 1.1,
-            }}
- 
+        }}
       >
         <fog attach="fog" args={["#d10000", 8, 35]} />
         <Suspense fallback={null}>
@@ -70,10 +67,18 @@ function BaseCanvas() {
           <Noise opacity={0.02} />
           <Vignette eskil={false} offset={0.1} darkness={1.0} />
         </EffectComposer>
-
-        {/* <PointerLockControls selector="#move-around" /> */}
-        {isCameraControl && <OrbitControls />}
-        <FollowMouse />
+        {isMobile && (
+          <OrbitControls
+            minAzimuthAngle={Math.PI / 5.9}
+            maxAzimuthAngle={Math.PI / 3.2}
+            minPolarAngle={Math.PI / 2.4}
+            maxPolarAngle={Math.PI - Math.PI / 2}
+            target={[-4, 0.6, -3]}
+            dampingFactor={0.07} 
+            rotateSpeed={0.25}
+          />
+        )}
+        {!isMobile && <FollowMouse />}
       </Canvas>
       <LoadingScreen />
     </div>
