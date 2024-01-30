@@ -1,9 +1,28 @@
 import { openInNewTab } from "@/utils/utils";
-import { useEffect, useState } from "react";
 import { LoopOnce } from "three";
+import { useContext, useEffect, useState } from "react";
+import { isMobileContext } from "@/contexts/isMobileContext";
 
 function Vinyl({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
+  const { isMobile } = useContext(isMobileContext);
+  const [clicks, setClicks] = useState(0);
+
+  const handlePointerDown = (e) => {
+    if (isMobile) {
+      hover(true);
+      actions.CylinderAction.play();
+      setClicks(clicks + 1);
+    }
+  };
+
+  const handlePointerUp = (e) => {
+    if (!isMobile || (isMobile && clicks > 1)) {
+      openInNewTab(
+        "https://github.com/Jord000/wax-frontend/blob/main/README.md"
+      );
+    }
+  };
 
   useEffect(() => {
     actions.CylinderAction.setLoop(LoopOnce, 1);
@@ -13,12 +32,13 @@ function Vinyl({ nodes, materials, actions }) {
   return (
     <group
       name="vinyl"
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
       onPointerOver={() => {
         actions.CylinderAction.play();
         hover(true);
       }}
       onPointerOut={() => hover(false)}
-      onClick={() => openInNewTab('https://github.com/Jord000/wax-frontend/blob/main/README.md')}
       position={[-0.6684292, 0.96610433, 0.00542845]}
     >
       <mesh

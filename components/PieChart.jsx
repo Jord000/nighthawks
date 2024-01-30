@@ -1,9 +1,27 @@
+import { isMobileContext } from "@/contexts/isMobileContext";
 import { openInNewTab } from "@/utils/utils";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoopOnce } from "three";
 
 function PieChart({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false);
+  const { isMobile } = useContext(isMobileContext);
+  const [clicks, setClicks] = useState(0);
+
+  const handlePointerDown = (e) => {
+    if (isMobile) {
+      hover(true);
+      actions.pieChartAction.play();
+      setClicks(clicks + 1);
+    }
+
+  };
+
+  const handlePointerUp = (e) => {
+    if (!isMobile || (isMobile && clicks > 1)) {
+      openInNewTab("https://carbon-data-pie.netlify.app/");
+    }
+  };
 
   useEffect(() => {
     actions.pieChartAction.setLoop(LoopOnce, 1);
@@ -12,6 +30,7 @@ function PieChart({ nodes, materials, actions }) {
 
   return (
     <group
+      onPointerDown={handlePointerDown}
       name="pieChart"
       position={[-2.27789855, 1.09064043, 0]}
       rotation={[-0.0233508, -0.40575488, -0.03035608]}
@@ -20,15 +39,13 @@ function PieChart({ nodes, materials, actions }) {
         actions.pieChartAction.play();
       }}
       onPointerOut={() => hover(false)}
-      onClick={() => openInNewTab("https://carbon-data-pie.netlify.app/")}
+      onPointerUp={handlePointerUp}
     >
       <mesh
         name="Mesh_2"
         castShadow
         receiveShadow
-        geometry={
-          nodes.Mesh_6 ? nodes.Mesh_6.geometry : nodes.Mesh_2.geometry
-        }
+        geometry={nodes.Mesh_6 ? nodes.Mesh_6.geometry : nodes.Mesh_2.geometry}
         material={materials.pie1}
       >
         {hovered && (
@@ -44,9 +61,7 @@ function PieChart({ nodes, materials, actions }) {
         name="Mesh_3"
         castShadow
         receiveShadow
-        geometry={
-          nodes.Mesh_7 ? nodes.Mesh_7.geometry : nodes.Mesh_3.geometry
-        }
+        geometry={nodes.Mesh_7 ? nodes.Mesh_7.geometry : nodes.Mesh_3.geometry}
         material={materials.pie2}
       >
         {hovered && (
@@ -78,9 +93,7 @@ function PieChart({ nodes, materials, actions }) {
         name="Mesh_5"
         castShadow
         receiveShadow
-     geometry={
-          nodes.Mesh_5 ? nodes.Mesh_5.geometry : nodes.Mesh_1.geometry
-        }
+        geometry={nodes.Mesh_5 ? nodes.Mesh_5.geometry : nodes.Mesh_1.geometry}
         material={materials.pie4}
       >
         {hovered && (

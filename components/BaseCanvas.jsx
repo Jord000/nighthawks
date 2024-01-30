@@ -38,6 +38,7 @@ function BaseCanvas() {
           fov: 70,
           zoom: 1.1,
         }}
+       
       >
         <fog attach="fog" args={["#d10000", 8, 35]} />
         <Suspense fallback={null}>
