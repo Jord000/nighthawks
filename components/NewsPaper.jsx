@@ -19,6 +19,8 @@ function NewsPaper({ nodes, materials, actions }) {
   const handlePointerUp = (e) => {
     if (!isMobile || (isMobile && clicks > 1)) {
       openInNewTab("https://thenewsjw.netlify.app/");
+    } else if (isMobile) {
+      hover(true);
     }
   };
 

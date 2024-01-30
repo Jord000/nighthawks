@@ -21,6 +21,8 @@ function Vinyl({ nodes, materials, actions }) {
       openInNewTab(
         "https://github.com/Jord000/wax-frontend/blob/main/README.md"
       );
+    } else if (isMobile) {
+      hover(true);
     }
   };
 

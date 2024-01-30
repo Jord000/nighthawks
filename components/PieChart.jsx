@@ -14,12 +14,13 @@ function PieChart({ nodes, materials, actions }) {
       actions.pieChartAction.play();
       setClicks(clicks + 1);
     }
-
   };
 
   const handlePointerUp = (e) => {
     if (!isMobile || (isMobile && clicks > 1)) {
       openInNewTab("https://carbon-data-pie.netlify.app/");
+    } else if (isMobile) {
+      hover(true);
     }
   };
 
