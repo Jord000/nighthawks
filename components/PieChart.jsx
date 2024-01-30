@@ -10,7 +10,6 @@ function PieChart({ nodes, materials, actions }) {
     actions.pieChartAction.clampWhenFinished = true;
   }, []);
 
-
   return (
     <group
       name="pieChart"
@@ -79,7 +78,9 @@ function PieChart({ nodes, materials, actions }) {
         name="Mesh_5"
         castShadow
         receiveShadow
-        geometry={nodes.Mesh_5.geometry}
+     geometry={
+          nodes.Mesh_5 ? nodes.Mesh_5.geometry : nodes.Mesh_1.geometry
+        }
         material={materials.pie4}
       >
         {hovered && (
