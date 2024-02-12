@@ -1,7 +1,7 @@
 'use client'
 import { Canvas } from '@react-three/fiber'
 import { NighthawksModel } from './NighthawksModel'
-import { Environment, OrbitControls } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import { Suspense, useContext, useEffect } from 'react'
 import Lights from './Lights'
 import {
@@ -9,7 +9,6 @@ import {
   Bloom,
   DepthOfField,
   Noise,
-  Vignette,
   ToneMapping,
 } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
@@ -34,7 +33,7 @@ function BaseCanvas() {
       <Canvas
         shadows
         camera={{
-          position: [-1.4, 2, 1.8],
+          position: [-1.2, 2, 1.8],
           fov: 70,
           zoom: 1.1,
         }}
@@ -64,8 +63,7 @@ function BaseCanvas() {
             height={700}
           />
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
-          <Noise opacity={0.02} />
-          <Vignette eskil={false} offset={0.1} darkness={1.0} />
+          <Noise opacity={0.04} />
         </EffectComposer>
         {isMobile && (
           <OrbitControls
@@ -79,7 +77,8 @@ function BaseCanvas() {
           />
         )}
         {!isMobile && <FollowMouse />}
-        <OrbitControls/>
+       
+      <OrbitControls/>
       </Canvas>
       <LoadingScreen />
     </div>
