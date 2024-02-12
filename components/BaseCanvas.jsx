@@ -73,7 +73,7 @@ function BaseCanvas() {
         )}
         {!isMobile && <FollowMouse />}
 
-        <OrbitControls />
+        {/* <OrbitControls /> */}
       </Canvas>
       <LoadingScreen />
     </div>
