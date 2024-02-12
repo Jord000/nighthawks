@@ -21,7 +21,7 @@ export function NighthawksModel(props) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Scene">
+      <group name="Scene" >
         <Vinyl nodes={nodes} materials={materials} actions={actions} />
         <NewsPaper nodes={nodes} materials={materials} actions={actions} />
         <PieChart nodes={nodes} materials={materials} actions={actions} />

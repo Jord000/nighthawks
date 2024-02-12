@@ -1,9 +1,9 @@
-"use client";
-import { Canvas } from "@react-three/fiber";
-import { NighthawksModel } from "./NighthawksModel";
-import { Environment, OrbitControls } from "@react-three/drei";
-import { Suspense, useContext, useEffect } from "react";
-import Lights from "./Lights";
+'use client'
+import { Canvas } from '@react-three/fiber'
+import { NighthawksModel } from './NighthawksModel'
+import { Environment, OrbitControls } from '@react-three/drei'
+import { Suspense, useContext, useEffect } from 'react'
+import Lights from './Lights'
 import {
   EffectComposer,
   Bloom,
@@ -11,43 +11,42 @@ import {
   Noise,
   Vignette,
   ToneMapping,
-} from "@react-three/postprocessing";
-import { ToneMappingMode } from "postprocessing";
-import SceneClouds from "./SceneClouds";
-import LoadingScreen from "./LoadingScreen";
-import { LoadedContext } from "@/contexts/LoadedContext";
-import FollowMouse from "./FollowMouse";
-import { isMobileContext } from "@/contexts/isMobileContext";
+} from '@react-three/postprocessing'
+import { ToneMappingMode } from 'postprocessing'
+import SceneClouds from './SceneClouds'
+import LoadingScreen from './LoadingScreen'
+import { LoadedContext } from '@/contexts/LoadedContext'
+import FollowMouse from './FollowMouse'
+import { isMobileContext } from '@/contexts/isMobileContext'
 
 function BaseCanvas() {
-  const { isLoaded } = useContext(LoadedContext);
-  const { isMobile, setIsMobile } = useContext(isMobileContext);
+  const { isLoaded } = useContext(LoadedContext)
+  const { isMobile, setIsMobile } = useContext(isMobileContext)
 
   useEffect(() => {
     if (window.innerWidth < 800) {
-      setIsMobile(true);
+      setIsMobile(true)
     }
-  }, [isLoaded]);
+  }, [isLoaded])
 
   return (
     <div id="canvas-container" className="flex h-[100%] w-[100%]">
       <Canvas
         shadows
         camera={{
-          position: [1.2, 1.8, 3],
+          position: [-1.4, 2, 1.8],
           fov: 70,
           zoom: 1.1,
         }}
-       
       >
-        <fog attach="fog" args={["#d10000", 8, 35]} />
+        <fog attach="fog" args={['#d10000', 8, 35]} />
         <Suspense fallback={null}>
           {isLoaded && (
             <>
               <Lights />
               <SceneClouds />
               <NighthawksModel />
-              <Environment files={"/clouds.exr"} background />
+              <color attach="background" args={['black']} />
             </>
           )}
         </Suspense>
@@ -75,7 +74,7 @@ function BaseCanvas() {
             minPolarAngle={Math.PI / 2.4}
             maxPolarAngle={Math.PI - Math.PI / 2}
             target={[-4, 0.6, -3]}
-            dampingFactor={0.07} 
+            dampingFactor={0.07}
             rotateSpeed={0.25}
           />
         )}
@@ -83,7 +82,7 @@ function BaseCanvas() {
       </Canvas>
       <LoadingScreen />
     </div>
-  );
+  )
 }
 
-export default BaseCanvas;
+export default BaseCanvas

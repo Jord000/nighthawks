@@ -30,7 +30,7 @@ function SceneClouds() {
           scale={0.7}
           volume={2}
           color="#dac5ed"
-          position={[-6.5, 0, -3]}
+          position={[0, 0, 0]}
           ref={cloudRef1}
         />
         <Cloud
