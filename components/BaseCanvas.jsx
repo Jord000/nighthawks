@@ -52,13 +52,12 @@ function BaseCanvas() {
         <EffectComposer disableNormalPass>
           <Bloom luminanceThreshold={1} mipmapBlur intensity={6} levels={8} />
           <DepthOfField
-            target={[0, 1, 0]}
-            focalLength={0.3}
-            bokehScale={15}
-            height={700}
+            focusDistance={0} // where to focus
+            focalLength={0.9} // focal length
+            bokehScale={2} // bokeh size
           />
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
-          <Noise opacity={0.04} />
+          <Noise opacity={0.02} />
         </EffectComposer>
         {isMobile && (
           <OrbitControls
