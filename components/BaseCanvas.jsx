@@ -50,14 +50,9 @@ function BaseCanvas() {
           )}
         </Suspense>
         <EffectComposer disableNormalPass>
-          <Bloom
-            luminanceThreshold={1}
-            mipmapBlur
-            intensity={0.35 * 4}
-            levels={8}
-          />
+          <Bloom luminanceThreshold={1} mipmapBlur intensity={6} levels={8} />
           <DepthOfField
-            target={[0, 0, 13]}
+            target={[0, 1, 0]}
             focalLength={0.3}
             bokehScale={15}
             height={700}
@@ -77,8 +72,8 @@ function BaseCanvas() {
           />
         )}
         {!isMobile && <FollowMouse />}
-       
-      <OrbitControls/>
+
+        <OrbitControls />
       </Canvas>
       <LoadingScreen />
     </div>

@@ -8,10 +8,10 @@ function SceneClouds() {
   const cloudRef2 = useRef()
   let movement = 0.04
   useFrame(({ clock }) => {
-    if (cloudRef1.current.position.z > 7) {
+    if (cloudRef1.current.position.z > 2) {
       movement = -0.04
     }
-    if (cloudRef1.current.position.z < -7) {
+    if (cloudRef1.current.position.z < -2) {
       movement = 0.04
     }
     cloudRef1.current.rotation.y = Math.cos(clock.elapsedTime / 4) / 1
@@ -26,17 +26,17 @@ function SceneClouds() {
       <Clouds material={THREE.MeshBasicMaterial}>
         <Cloud
           segments={20}
-          bounds={[2, 2, 2]}
+          bounds={[3, 3, 3]}
           scale={0.7}
           volume={2}
           color="#0c0d36"
-          position={[0, 0, 0]}
+          position={[-2, 1, 0]}
           ref={cloudRef1}
         />
         <Cloud
           seed={2}
-          segments={3}
-          bounds={[1, 1, 1]}
+          segments={5}
+          bounds={[2, 2, 2]}
           scale={1}
           volume={5}
           color="#47334f"
