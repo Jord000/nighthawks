@@ -2,17 +2,11 @@ import { openInNewTab } from '@/utils/utils'
 import { LoopOnce } from 'three'
 import { useContext, useEffect, useState } from 'react'
 import { isMobileContext } from '@/contexts/isMobileContext'
-import { useScroll } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 
 function Vinyl({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false)
   const { isMobile } = useContext(isMobileContext)
   const [clicks, setClicks] = useState(0)
-  const [vinylPositionX, setVinylPositionX] = useState(-0.6684292)
-  const [vinylPositionY, setVinylPositionY] = useState(0.00542845)
-
-  const scrollData = useScroll()
 
   const handlePointerDown = (e) => {
     if (isMobile) {
@@ -37,11 +31,6 @@ function Vinyl({ nodes, materials, actions }) {
     actions.CylinderAction.clampWhenFinished = true
   }, [])
 
-  // useFrame(() => {
-  //   setVinylPositionX(-0.6684292- scrollData.range(1 / 3, 1 / 3, 0.1)*1.5)
-  //   // setVinylPositionY( 0.00542845 + scrollData.range(1 / 3, 1 / 3, 0.1) / 2)
-  // }, [scrollData.range()])
-
   return (
     <group
       name="vinyl"
@@ -52,7 +41,7 @@ function Vinyl({ nodes, materials, actions }) {
         hover(true)
       }}
       onPointerOut={() => hover(false)}
-      position={[vinylPositionX, 0.96610433, vinylPositionY]}
+      position={[-0.6684292, 0.96610433, 0.00542845]}
     >
       <mesh
         name="Cylinder010"
