@@ -23,7 +23,7 @@ function PieChart({ nodes, materials, actions }) {
       hover(true)
     }
   }
-  console.log(nodes)
+
   useEffect(() => {
     actions.pieChartAction.setLoop(LoopOnce, 1)
     actions.pieChartAction.clampWhenFinished = true
