@@ -59,17 +59,6 @@ function BaseCanvas() {
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
           <Noise opacity={0.02} />
         </EffectComposer>
-        {isMobile && (
-          <OrbitControls
-            minAzimuthAngle={Math.PI / 5.9}
-            maxAzimuthAngle={Math.PI / 3.2}
-            minPolarAngle={Math.PI / 2.4}
-            maxPolarAngle={Math.PI - Math.PI / 2}
-            target={[-4, 0.6, -3]}
-            dampingFactor={0.07}
-            rotateSpeed={0.25}
-          />
-        )}
         {!isMobile && <FollowMouse />}
 
         {/* <OrbitControls /> */}

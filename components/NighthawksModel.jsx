@@ -4,6 +4,8 @@ import {
   useAnimations,
   MeshTransmissionMaterial,
   useTexture,
+  ScrollControls,
+  Scroll,
 } from '@react-three/drei'
 
 import Vinyl from './Vinyl'
@@ -21,10 +23,14 @@ export function NighthawksModel(props) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Scene" >
-        <Vinyl nodes={nodes} materials={materials} actions={actions} />
-        <NewsPaper nodes={nodes} materials={materials} actions={actions} />
-        <PieChart nodes={nodes} materials={materials} actions={actions} />
+      <group name="Scene">
+        <ScrollControls>
+    
+          <Vinyl nodes={nodes} materials={materials} actions={actions} />
+          <NewsPaper nodes={nodes} materials={materials} actions={actions} />
+          <PieChart nodes={nodes} materials={materials} actions={actions} />
+
+        </ScrollControls>
       </group>
     </group>
   )
