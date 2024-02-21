@@ -3,10 +3,11 @@ import { useEffect, useState, useContext } from 'react'
 import { LoadedContext } from '@/contexts/LoadedContext'
 import { motion } from 'framer-motion'
 import AnimatedText from '@/components/AnimatedText'
+import { isMobileContext } from '@/contexts/isMobileContext'
 
 function AnimatedDiv() {
   const { isLoaded } = useContext(LoadedContext)
-  const [isMobile, setIsMobile] = useState(false)
+  const { isMobile } = useContext(isMobileContext)
   const [isTimerComplete, setIsTimerComplete] = useState(false)
 
   useEffect(() => {
@@ -15,9 +16,7 @@ function AnimatedDiv() {
         setIsTimerComplete(true)
       }, 7000)
     }
-    if (window.innerWidth < 800) {
-      setIsMobile(true)
-    }
+
   }, [isLoaded])
 
   return (
@@ -27,7 +26,7 @@ function AnimatedDiv() {
           initial={{ y: -200 }}
           animate={{ y: 24 }}
           transition={{ delay: 1, duration: 1.0 }}
-          className="bg-[#EFEFF8] absolute z-10 ml-auto mr-auto min-h-[17%] w-[70%] p-4 opacity-5 border-solid rounded drop-shadow text-center leading-4"
+          className="bg-[#EFEFF8] absolute z-10 ml-auto mr-auto min-h-[17%] w-[70%] p-4 bg-opacity-5 border-solid rounded drop-shadow text-center leading-4"
         >
           <AnimatedText
             text={[
