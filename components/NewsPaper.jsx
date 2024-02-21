@@ -1,5 +1,7 @@
 import { isMobileContext } from '@/contexts/isMobileContext'
 import { openInNewTab } from '@/utils/utils'
+import { useScroll } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 import { useContext, useEffect, useState } from 'react'
 import { LoopOnce } from 'three'
 
@@ -7,6 +9,10 @@ function NewsPaper({ nodes, materials, actions }) {
   const [hovered, hover] = useState(false)
   const { isMobile } = useContext(isMobileContext)
   const [clicks, setClicks] = useState(0)
+  const [paperPositionX, setPaperPositionX] = useState(-1.20019758)
+  const [paperPositionY, setPaperPositionY] = useState(-0.00663512)
+
+  const scrollData = useScroll()
 
   const handlePointerDown = (e) => {
     if (isMobile) {
@@ -29,6 +35,11 @@ function NewsPaper({ nodes, materials, actions }) {
     actions.BezierCurveAction.setLoop(LoopOnce, 1)
   }, [])
 
+  useFrame(() => {
+    setPaperPositionX(-1.20019758 - scrollData.range(1 / 3, 1 / 3, 0.1))
+    // setPaperPositionY(0.00542845 + scrollData.range(1 / 3, 1 / 3, 0.1) / 2)
+  }, [scrollData.range()])
+
   return (
     <mesh
       name="newspaper"
@@ -43,7 +54,7 @@ function NewsPaper({ nodes, materials, actions }) {
       receiveShadow
       geometry={nodes.newspaper.geometry}
       material={materials.newspaper}
-      position={[-1.20019758, 1.02019525, -0.00663512]}
+      position={[paperPositionX, 1.02019525, paperPositionY]}
       rotation={[-0.77247715, 0, 0]}
     >
       {hovered && (

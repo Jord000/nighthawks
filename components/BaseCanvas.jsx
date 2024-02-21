@@ -61,7 +61,7 @@ function BaseCanvas() {
         </EffectComposer>
         {!isMobile && <FollowMouse />}
 
-        {/* <OrbitControls /> */}
+
       </Canvas>
       <LoadingScreen />
     </div>
