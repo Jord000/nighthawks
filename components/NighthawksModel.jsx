@@ -6,6 +6,7 @@ import {
   useTexture,
   ScrollControls,
   Scroll,
+  useScroll,
 } from '@react-three/drei'
 
 import Vinyl from './Vinyl'
