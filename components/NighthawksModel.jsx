@@ -1,13 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import {
-  useGLTF,
-  useAnimations,
-  MeshTransmissionMaterial,
-  useTexture,
-  ScrollControls,
-  Scroll,
-  useScroll,
-} from '@react-three/drei'
+import { useGLTF, useAnimations, useTexture } from '@react-three/drei'
 
 import Vinyl from './Vinyl'
 import NewsPaper from './NewsPaper'
@@ -25,13 +17,9 @@ export function NighthawksModel(props) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <ScrollControls>
-    
-          <Vinyl nodes={nodes} materials={materials} actions={actions} />
-          <NewsPaper nodes={nodes} materials={materials} actions={actions} />
-          <PieChart nodes={nodes} materials={materials} actions={actions} />
-
-        </ScrollControls>
+        <Vinyl nodes={nodes} materials={materials} actions={actions} />
+        <NewsPaper nodes={nodes} materials={materials} actions={actions} />
+        <PieChart nodes={nodes} materials={materials} actions={actions} />
       </group>
     </group>
   )

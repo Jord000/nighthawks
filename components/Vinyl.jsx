@@ -37,10 +37,10 @@ function Vinyl({ nodes, materials, actions }) {
     actions.CylinderAction.clampWhenFinished = true
   }, [])
 
-  useFrame(() => {
-    setVinylPositionX(-0.6684292- scrollData.range(1 / 3, 1 / 3, 0.1)*1.5)
-    // setVinylPositionY( 0.00542845 + scrollData.range(1 / 3, 1 / 3, 0.1) / 2)
-  }, [scrollData.range()])
+  // useFrame(() => {
+  //   setVinylPositionX(-0.6684292- scrollData.range(1 / 3, 1 / 3, 0.1)*1.5)
+  //   // setVinylPositionY( 0.00542845 + scrollData.range(1 / 3, 1 / 3, 0.1) / 2)
+  // }, [scrollData.range()])
 
   return (
     <group

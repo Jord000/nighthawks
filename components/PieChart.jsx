@@ -35,10 +35,10 @@ function PieChart({ nodes, materials, actions }) {
     actions.pieChartAction.clampWhenFinished = true
   }, [])
 
-  useFrame(() => {
-    setPiePositionX(-2.27789855 - scrollData.range(1 / 3, 1 / 3, 0.1)*1.5)
-    // setPiePositionY(0 - scrollData.range(1 / 3, 1 / 3, 0.1)/2)
-  }, [scrollData.range()])
+  // useFrame(() => {
+  //   setPiePositionX(-2.27789855 - scrollData.range(1 / 3, 1 / 3, 0.1)*1.5)
+  //   // setPiePositionY(0 - scrollData.range(1 / 3, 1 / 3, 0.1)/2)
+  // }, [scrollData.range()])
 
   return (
     <group
