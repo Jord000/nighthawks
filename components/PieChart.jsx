@@ -10,7 +10,7 @@ function PieChart({ nodes, materials, actions }) {
   const { isMobile } = useContext(isMobileContext)
   const [clicks, setClicks] = useState(0)
   const [piePositionX, setPiePositionX] = useState(-2.27789855)
-  const [piePositionY, setPiePositionY] = useState(1.09064043)
+  const [piePositionY, setPiePositionY] = useState(0)
 
   const scrollData = useScroll()
 
@@ -36,14 +36,15 @@ function PieChart({ nodes, materials, actions }) {
   }, [])
 
   useFrame(() => {
-    setPiePositionX(-2.27789855 + scrollData.range(1 / 3, 1 / 3, 0.1))
+    setPiePositionY(0 - scrollData.range(1 / 3, 1 / 3, 0.1)/2)
+    setPiePositionX(-2.27789855 - scrollData.range(1 / 3, 1 / 3, 0.1))
   }, [scrollData.range()])
 
   return (
     <group
       onPointerDown={handlePointerDown}
       name="pieChart"
-      position={[piePositionX, piePositionY, 0]}
+      position={[piePositionX, 1.09064043, piePositionY]}
       rotation={[-0.0233508, -0.40575488, -0.03035608]}
       onPointerOver={() => {
         hover(true)
