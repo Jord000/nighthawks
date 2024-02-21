@@ -36,9 +36,9 @@ function NewsPaper({ nodes, materials, actions }) {
   }, [])
 
   useFrame(() => {
-    setPaperPositionX(-1.20019758 - scrollData.range(1 / 3, 1 / 3, 0.1))
+    setPaperPositionX(-1.20019758 - scrollData.range(1 / 3, 1 / 3, 0.1) * 1.5)
     // setPaperPositionY(0.00542845 + scrollData.range(1 / 3, 1 / 3, 0.1) / 2)
-  }, [scrollData.range()])
+  })
 
   return (
     <mesh

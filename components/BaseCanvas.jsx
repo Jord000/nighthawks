@@ -2,7 +2,7 @@
 import { Canvas } from '@react-three/fiber'
 import { NighthawksModel } from './NighthawksModel'
 import { OrbitControls } from '@react-three/drei'
-import { Suspense, useContext, useEffect } from 'react'
+import { Suspense, useContext, useEffect, useRef, useState } from 'react'
 import Lights from './Lights'
 import {
   EffectComposer,
@@ -21,19 +21,23 @@ import { isMobileContext } from '@/contexts/isMobileContext'
 function BaseCanvas() {
   const { isLoaded } = useContext(LoadedContext)
   const { isMobile, setIsMobile } = useContext(isMobileContext)
+  const [cameraPosition,setCameraPosition] = useState([-1.2, 2.2, 1.8])
 
   useEffect(() => {
     if (window.innerWidth < 800) {
       setIsMobile(true)
+      setCameraPosition([-3,2,2])
     }
   }, [isLoaded])
+
+
 
   return (
     <div id="canvas-container" className="flex h-[100%] w-[100%]">
       <Canvas
         shadows
         camera={{
-          position: [-1.2, 2, 1.8],
+          position: cameraPosition,
           fov: 70,
           zoom: 1.1,
         }}
@@ -59,9 +63,9 @@ function BaseCanvas() {
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
           <Noise opacity={0.02} />
         </EffectComposer>
-        {!isMobile && <FollowMouse />}
+        <FollowMouse />
 
-
+        {/* <OrbitControls /> */}
       </Canvas>
       <LoadingScreen />
     </div>

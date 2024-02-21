@@ -36,7 +36,7 @@ function PieChart({ nodes, materials, actions }) {
   }, [])
 
   useFrame(() => {
-    setPiePositionX(-2.27789855 - scrollData.range(1 / 3, 1 / 3, 0.1))
+    setPiePositionX(-2.27789855 - scrollData.range(1 / 3, 1 / 3, 0.1)*1.5)
     // setPiePositionY(0 - scrollData.range(1 / 3, 1 / 3, 0.1)/2)
   }, [scrollData.range()])
 
