@@ -1,35 +1,35 @@
-'use client'
-import { Canvas } from '@react-three/fiber'
-import { NighthawksModel } from './NighthawksModel'
-import { Suspense, useContext, useEffect, useState } from 'react'
-import Lights from './Lights'
+"use client";
+import { Canvas } from "@react-three/fiber";
+import { NighthawksModel } from "./NighthawksModel";
+import { Suspense, useContext, useEffect, useState } from "react";
+import Lights from "./Lights";
 import {
   EffectComposer,
   Bloom,
   DepthOfField,
   Noise,
   ToneMapping,
-} from '@react-three/postprocessing'
-import { ToneMappingMode } from 'postprocessing'
-import SceneClouds from './SceneClouds'
-import LoadingScreen from './LoadingScreen'
-import { LoadedContext } from '@/contexts/LoadedContext'
-import FollowMouse from './FollowMouse'
-import { isMobileContext } from '@/contexts/isMobileContext'
-import ScrollComponent from './ScrollComponent'
-import { ScrollControls } from '@react-three/drei'
+} from "@react-three/postprocessing";
+import { ToneMappingMode } from "postprocessing";
+import SceneClouds from "./SceneClouds";
+import LoadingScreen from "./LoadingScreen";
+import { LoadedContext } from "@/contexts/LoadedContext";
+import FollowMouse from "./FollowMouse";
+import { isMobileContext } from "@/contexts/isMobileContext";
+import ScrollComponent from "./ScrollComponent";
+import { ScrollControls } from "@react-three/drei";
 
 function BaseCanvas() {
-  const { isLoaded } = useContext(LoadedContext)
-  const { isMobile, setIsMobile } = useContext(isMobileContext)
-  const [cameraPosition, setCameraPosition] = useState([-1.2, 2.2, 1.8])
+  const { isLoaded } = useContext(LoadedContext);
+  const { isMobile, setIsMobile } = useContext(isMobileContext);
+  const [cameraPosition, setCameraPosition] = useState([-1.2, 2.2, 1.8]);
 
   useEffect(() => {
     if (window.innerWidth < 800) {
-      setIsMobile(true)
-      setCameraPosition([-3, 2, 2])
+      setIsMobile(true);
+      setCameraPosition([-3, 2, 2]);
     }
-  }, [isLoaded])
+  }, [isLoaded]);
 
   return (
     <div id="canvas-container" className="flex h-[100%] w-[100%]">
@@ -42,17 +42,17 @@ function BaseCanvas() {
         }}
       >
         <ScrollControls>
-          <ScrollComponent cameraPosition={cameraPosition} 
-          />
+          <ScrollComponent cameraPosition={cameraPosition} />
+          <FollowMouse />
         </ScrollControls>
-        <fog attach="fog" args={['#d10000', 8, 35]} />
+        <fog attach="fog" args={["#d10000", 8, 35]} />
         <Suspense fallback={null}>
           {isLoaded && (
             <>
               <Lights />
               <SceneClouds />
               <NighthawksModel />
-              <color attach="background" args={['black']} />
+              <color attach="background" args={["black"]} />
             </>
           )}
         </Suspense>
@@ -62,13 +62,12 @@ function BaseCanvas() {
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
           <Noise opacity={0.02} />
         </EffectComposer>
-        <FollowMouse />
 
         {/* <OrbitControls /> */}
       </Canvas>
       <LoadingScreen />
     </div>
-  )
+  );
 }
 
-export default BaseCanvas
+export default BaseCanvas;
