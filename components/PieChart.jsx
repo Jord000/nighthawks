@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useContext, useEffect, useRef, useState } from "react";
 import { LoopOnce } from "three";
 
-function PieChart({ nodes, materials, actions }) {
+function PieChart({ nodes, materials, actions, mixer }) {
   const [hovered, hover] = useState(false);
   const { isMobile } = useContext(isMobileContext);
   const [clicks, setClicks] = useState(0);
@@ -28,16 +28,25 @@ function PieChart({ nodes, materials, actions }) {
 
   useEffect(() => {
     actions.pieChartAction.setLoop(LoopOnce, 1);
-    actions.pieChartAction.clampWhenFinished = true;
   }, []);
 
   useFrame((state) => {
     const et = state.clock.elapsedTime;
-    pieGroup.current.position.y = (Math.sin(et) * 1) / 6 + 0.8;
-    pieGroup.current.rotation.x = Math.sin(et / 3) / 2;
-    pieGroup.current.rotation.y = Math.cos(et / 2) / 2;
-    pieGroup.current.rotation.z = Math.sin(et / 3) / 2;
+    if (mixer.stats.actions.inUse === 0) {
+      pieGroup.current.position.y = (Math.sin(et) * 1) / 6 + 0.8;
+      pieGroup.current.rotation.x = Math.sin(et / 3) / 2;
+      pieGroup.current.rotation.y = Math.cos(et / 2) / 2;
+      pieGroup.current.rotation.z = Math.sin(et / 3) / 2;
+    }
   });
+
+  useEffect(() => {
+    const fn = (e) => actions.pieChartAction.stop()
+    mixer.addEventListener("finished", fn);
+    return () => {
+      mixer.removeEventListener("finished", fn);
+    };
+  },[mixer]);
 
   return (
     <group

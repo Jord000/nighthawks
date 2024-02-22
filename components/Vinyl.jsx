@@ -4,7 +4,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { isMobileContext } from "@/contexts/isMobileContext";
 import { useFrame } from "@react-three/fiber";
 
-function Vinyl({ nodes, materials, actions }) {
+function Vinyl({ nodes, materials, actions, mixer }) {
   const [hovered, hover] = useState(false);
   const { isMobile } = useContext(isMobileContext);
   const [clicks, setClicks] = useState(0);
@@ -35,11 +35,20 @@ function Vinyl({ nodes, materials, actions }) {
 
   useFrame((state) => {
     const et = state.clock.elapsedTime;
+    if (mixer.stats.actions.inUse === 0) {
     vinylGroup.current.position.y = (Math.sin(et * 1.2) * 1) / 6 + 1;
     vinylGroup.current.rotation.x = Math.sin(et / 3);
     vinylGroup.current.rotation.y = Math.cos((et * 2) / 3) / 2;
-    vinylGroup.current.rotation.z = Math.sin(et / 3);
+    vinylGroup.current.rotation.z = Math.sin(et / 3);}
   });
+
+  useEffect(() => {
+    const fn = (e) => actions.CylinderAction.stop();
+    mixer.addEventListener("finished", fn);
+    return () => {
+      mixer.removeEventListener("finished", fn);
+    };
+  }, [mixer]);
 
   return (
     <group

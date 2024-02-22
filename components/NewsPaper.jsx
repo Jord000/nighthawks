@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { useContext, useEffect, useRef, useState } from "react";
 import { LoopOnce } from "three";
 
-function NewsPaper({ nodes, materials, actions }) {
+function NewsPaper({ nodes, materials, actions ,mixer}) {
   const [hovered, hover] = useState(false);
   const { isMobile } = useContext(isMobileContext);
   const [clicks, setClicks] = useState(0);
@@ -35,12 +35,21 @@ function NewsPaper({ nodes, materials, actions }) {
 
   useFrame((state) => {
     const et = state.clock.elapsedTime;
+    if (mixer.stats.actions.inUse === 0) {
     newsGroup.current.position.y = (Math.sin(et * 1.3) * 1) / 6 + 0.9;
     newsGroup.current.rotation.x = Math.sin(et / 3);
     newsGroup.current.rotation.y = Math.cos((et * 2.2) / 3) / 2;
-    newsGroup.current.rotation.z = Math.sin(et / 3);
+    newsGroup.current.rotation.z = Math.sin(et / 3);}
   });
-console.log(actions.BezierCurveAction)
+
+  useEffect(() => {
+    const fn = (e) => actions.BezierCurveAction.stop();
+    mixer.addEventListener("finished", fn);
+    return () => {
+      mixer.removeEventListener("finished", fn);
+    };
+  }, [mixer]);
+
   return (
     <mesh
       ref={newsGroup}

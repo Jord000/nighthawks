@@ -12,14 +12,14 @@ export function NighthawksModel(props) {
   const { nodes, materials, animations } = useGLTF('/bar-enviro-for-export.glb')
   const { actions, mixer } = useAnimations(animations, group)
 
-  useEffect(() => {}, [mixer])
+
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <Vinyl nodes={nodes} materials={materials} actions={actions} />
-        <NewsPaper nodes={nodes} materials={materials} actions={actions} />
-        <PieChart nodes={nodes} materials={materials} actions={actions} />
+        <Vinyl nodes={nodes} materials={materials} actions={actions} mixer={mixer}/>
+        <NewsPaper nodes={nodes} materials={materials} actions={actions} mixer={mixer}/>
+        <PieChart nodes={nodes} materials={materials} actions={actions} mixer={mixer}/>
       </group>
     </group>
   )
