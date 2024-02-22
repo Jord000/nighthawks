@@ -32,7 +32,7 @@ function AnimatedDiv() {
             text={[
               'Jordan Watson',
               'Software Developer',
-              'Tap an item on the bar to bring it to life.',
+              'Tap an item to bring it to life.',
               'Tap again to jump to one of my projects',
             ]}
           />
@@ -49,7 +49,7 @@ function AnimatedDiv() {
             text={[
               'Jordan Watson',
               'Software Developer',
-              'Hover over one of the items on the bar.',
+              'Hover over one of the items.',
               'Click an item to jump to one of my projects',
             ]}
           />
