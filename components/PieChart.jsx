@@ -1,8 +1,8 @@
 import { isMobileContext } from '@/contexts/isMobileContext'
 import { openInNewTab } from '@/utils/utils'
 import { useFrame } from '@react-three/fiber'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { LoopOnce } from 'three'
+import { useContext, useRef, useState } from 'react'
+
 
 function PieChart({ nodes, materials, actions, mixer }) {
   const [hovered, hover] = useState(false)
@@ -12,17 +12,12 @@ function PieChart({ nodes, materials, actions, mixer }) {
   const pieGroup = useRef()
   let step = 0.01
 
-  const startPieAnimation = () => {
-    setIsAnimating(true)
-    setTimeout(() => {
-      setIsAnimating(false)
-    }, 10000)
-  }
+
 
   const handlePointerDown = (e) => {
     if (isMobile) {
       hover(true)
-      startPieAnimation()
+      setIsAnimating(true)
       setClicks(clicks + 1)
     }
   }
@@ -37,31 +32,28 @@ function PieChart({ nodes, materials, actions, mixer }) {
   const customPieAnimate = (position) => {
     if (position >= 1.5) {
       step = -0.01
-    } else if (position <= 0) {
-      step = 0.01
+    } else if (position <= 0.7) {
+      setIsAnimating(false)
     }
     return (position += step)
   }
 
   useFrame((state) => {
     const et = state.clock.elapsedTime
-  
+
     if (isAnimating) {
       pieGroup.current.position.y = customPieAnimate(
         pieGroup.current.position.y
       )
-      pieGroup.current.rotation.x = Math.sin(et *2) / 2
-      pieGroup.current.rotation.y = Math.cos(et *2) / 2
-      pieGroup.current.rotation.z = Math.sin(et *2) / 2
-    }
-    else {
+      pieGroup.current.rotation.x = Math.sin(et * 2) / 2
+      pieGroup.current.rotation.y = Math.cos(et * 2) / 2
+      pieGroup.current.rotation.z = Math.sin(et * 2) / 2
+    } else {
       pieGroup.current.position.y = (Math.sin(et) * 1) / 6 + 0.8
       pieGroup.current.rotation.x = Math.sin(et / 3) / 2
       pieGroup.current.rotation.y = Math.cos(et / 2) / 2
       pieGroup.current.rotation.z = Math.sin(et / 3) / 2
-
     }
-
   })
 
   return (
@@ -69,11 +61,11 @@ function PieChart({ nodes, materials, actions, mixer }) {
       ref={pieGroup}
       onPointerDown={handlePointerDown}
       name="pieChart"
-      position={[-2.27789855, 1.09064043, 0]}
+      position={[-2.27789855, 0.5, 0]}
       rotation={[-0.0233508, -0.40575488, -0.03035608]}
       onPointerOver={() => {
         hover(true)
-        startPieAnimation()
+        setIsAnimating(true)
       }}
       onPointerOut={() => hover(false)}
       onPointerUp={handlePointerUp}

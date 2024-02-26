@@ -9,17 +9,17 @@ export function NighthawksModel(props) {
   const metalMatCap = useTexture('/metalmatcap1.png')
   const group = useRef()
 
-  const { nodes, materials, animations } = useGLTF('/bar-enviro-for-export.glb')
-  const { actions, mixer } = useAnimations(animations, group)
+  const { nodes, materials } = useGLTF('/bar-enviro-for-export.glb')
+ 
 
 
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <Vinyl nodes={nodes} materials={materials} actions={actions} mixer={mixer}/>
-        <NewsPaper nodes={nodes} materials={materials} actions={actions} mixer={mixer}/>
-        <PieChart nodes={nodes} materials={materials} actions={actions} mixer={mixer}/>
+        <Vinyl nodes={nodes} materials={materials} />
+        <NewsPaper nodes={nodes} materials={materials} />
+        <PieChart nodes={nodes} materials={materials} />
       </group>
     </group>
   )
