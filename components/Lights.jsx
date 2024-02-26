@@ -15,9 +15,10 @@ function Lights() {
   return (
     <>
       <SoftShadows />
-      <hemisphereLight intensity={3} groundColor="black"/>
+      <ambientLight intensity={1} />
+      <hemisphereLight intensity={2} groundColor="white" />
       <spotLight
-        color={'#7754DA'}
+        color={'#b6a5e8'}
         position={[-3, 2, 1.5]}
         target-position={[-1, 1, 0]}
         penumbra={1}
@@ -26,7 +27,7 @@ function Lights() {
         shadow-mapSize={1024}
       />
       <directionalLight
-        color={'#9d83e6'}
+        color={'#c4b8e6'}
         position={[1.5, 2, 1]}
         angle={0.1}
         target-position={[-1, 1, 0]}

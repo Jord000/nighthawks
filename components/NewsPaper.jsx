@@ -11,8 +11,6 @@ function NewsPaper({ nodes, materials }) {
   const [isAnimating, setIsAnimating] = useState(false)
   let step = 0.01
 
-
-
   const handlePointerDown = (e) => {
     if (isMobile) {
       hover(true)
@@ -30,7 +28,7 @@ function NewsPaper({ nodes, materials }) {
   }
 
   const customPaperAnimation = (position) => {
-    if (position >= 2) {
+    if (position >= 1.8) {
       step = -0.01
     } else if (position <= 0.7) {
       setIsAnimating(false)
@@ -45,9 +43,9 @@ function NewsPaper({ nodes, materials }) {
       newsGroup.current.position.y = customPaperAnimation(
         newsGroup.current.position.y
       )
-      newsGroup.current.rotation.x = Math.sin(et*1.5)
-      newsGroup.current.rotation.y = Math.cos((et * 3)) / 2
-      newsGroup.current.rotation.z = Math.sin(et*1.5)
+      newsGroup.current.rotation.x = Math.sin(et * 1.5)
+      newsGroup.current.rotation.y = Math.cos(et * 3) / 2
+      newsGroup.current.rotation.z = Math.sin(et * 1.5)
     } else {
       newsGroup.current.position.y = (Math.sin(et * 1.3) * 1) / 6 + 0.9
       newsGroup.current.rotation.x = Math.sin(et / 3)
@@ -55,8 +53,6 @@ function NewsPaper({ nodes, materials }) {
       newsGroup.current.rotation.z = Math.sin(et / 3)
     }
   })
-
-
 
   return (
     <mesh
