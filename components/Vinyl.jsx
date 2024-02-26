@@ -2,6 +2,7 @@ import { openInNewTab } from '@/utils/utils'
 import { useContext, useRef, useState } from 'react'
 import { isMobileContext } from '@/contexts/isMobileContext'
 import { useFrame } from '@react-three/fiber'
+import { MeshTransmissionMaterial } from '@react-three/drei'
 
 function Vinyl({ nodes, materials }) {
   const [hovered, hover] = useState(false)
@@ -30,7 +31,6 @@ function Vinyl({ nodes, materials }) {
   }
 
   const customVinylAnimation = (position) => {
-  
     if (position >= 1.8) {
       step = -0.01
     } else if (position <= 0.7) {
@@ -76,10 +76,14 @@ function Vinyl({ nodes, materials }) {
         receiveShadow
         geometry={nodes.Cylinder010.geometry}
       >
-        <meshStandardMaterial
-          color={'white'}
+        <MeshTransmissionMaterial
+          resolution={1024}
+          distortion={0.25}
+          color="#E3E3E3"
+          thickness={1}
+          anisotropy={1}
           emissive={'hotpink'}
-          emissiveIntensity={hovered ? 5 : 0}
+          emissiveIntensity={hovered ? 5 : 0.01}
           toneMapped={false}
         />
       </mesh>

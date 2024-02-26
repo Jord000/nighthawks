@@ -45,9 +45,9 @@ function NewsPaper({ nodes, materials }) {
       newsGroup.current.position.y = customPaperAnimation(
         newsGroup.current.position.y
       )
-      newsGroup.current.rotation.x = Math.sin(et*2)
+      newsGroup.current.rotation.x = Math.sin(et*1.5)
       newsGroup.current.rotation.y = Math.cos((et * 3)) / 2
-      newsGroup.current.rotation.z = Math.sin(et*2)
+      newsGroup.current.rotation.z = Math.sin(et*1.5)
     } else {
       newsGroup.current.position.y = (Math.sin(et * 1.3) * 1) / 6 + 0.9
       newsGroup.current.rotation.x = Math.sin(et / 3)
