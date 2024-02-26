@@ -14,7 +14,7 @@ function AnimatedDiv() {
     if (isLoaded) {
       setTimeout(() => {
         setIsTimerComplete(true)
-      }, 7000)
+      }, 4000)
     }
 
   }, [isLoaded])
