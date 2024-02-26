@@ -1,60 +1,43 @@
-"use client";
+'use client'
 import {
   AccumulativeShadows,
   RandomizedLight,
   SoftShadows,
   useHelper,
-} from "@react-three/drei";
-import { useRef } from "react";
-import { DirectionalLightHelper } from "three";
+} from '@react-three/drei'
+import { useRef } from 'react'
+import { DirectionalLightHelper } from 'three'
 
 function Lights() {
-  const directionalLight = useRef();
-  useHelper(directionalLight, DirectionalLightHelper, 1, "red");
+  const directionalLight = useRef()
+  useHelper(directionalLight, DirectionalLightHelper, 1, 'red')
 
   return (
     <>
-    <SoftShadows/>
-      <AccumulativeShadows
-        temporal
-        frames={100}
-        color="black"
-        colorBlend={0.5}
-        opacity={1}
-        scale={8}
-        alphaTest={0.85}
-        position={[0,0.01,0]}
-      >
-        <RandomizedLight
-          amount={4}
-          radius={5}
-          ambient={0.5}
-          position={[3, 1, 2]}
-          bias={0.001}
-        />
-      </AccumulativeShadows>
-      <hemisphereLight args={["#E3DAFC", "#333", 3]} />
+      <SoftShadows />
+      <ambientLight intensity={1} />
+      <hemisphereLight intensity={2} groundColor="white" />
       <spotLight
-        color={"#7754DA"}
-        position={[3, 2.2, 3]}
-        angle={0.4}
+        color={'#b6a5e8'}
+        position={[-3, 2, 1.5]}
+        target-position={[-1, 1, 0]}
         penumbra={1}
-        intensity={100}
+        intensity={20}
         castShadow
         shadow-mapSize={1024}
       />
       <directionalLight
-        color={"#7754DA"}
-        position={[-2, 2, 1.5]}
+        color={'#c4b8e6'}
+        position={[1.5, 2, 1]}
         angle={0.1}
-        target-position={[-1, 2, -2]}
-        intensity={10}
+        target-position={[-1, 1, 0]}
+        intensity={4}
         castShadow
         shadow-mapSize={1024}
         // ref={directionalLight}
       />
     </>
-  );
+  )
 }
 
-export default Lights;
+export default Lights

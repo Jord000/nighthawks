@@ -1,43 +1,71 @@
-import { isMobileContext } from "@/contexts/isMobileContext";
-import { openInNewTab } from "@/utils/utils";
-import { useContext, useEffect, useState } from "react";
-import { LoopOnce } from "three";
+import { isMobileContext } from '@/contexts/isMobileContext'
+import { openInNewTab } from '@/utils/utils'
+import { useFrame } from '@react-three/fiber'
+import { useContext, useRef, useState } from 'react'
 
-function PieChart({ nodes, materials, actions }) {
-  const [hovered, hover] = useState(false);
-  const { isMobile } = useContext(isMobileContext);
-  const [clicks, setClicks] = useState(0);
+
+function PieChart({ nodes, materials, actions, mixer }) {
+  const [hovered, hover] = useState(false)
+  const { isMobile } = useContext(isMobileContext)
+  const [clicks, setClicks] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const pieGroup = useRef()
+  let step = 0.01
+
+
 
   const handlePointerDown = (e) => {
     if (isMobile) {
-      hover(true);
-      actions.pieChartAction.play();
-      setClicks(clicks + 1);
+      hover(true)
+      setIsAnimating(true)
+      setClicks(clicks + 1)
     }
-  };
-
+  }
   const handlePointerUp = (e) => {
     if (!isMobile || (isMobile && clicks > 1)) {
-      openInNewTab("https://carbon-data-pie.netlify.app/");
+      openInNewTab('https://carbon-data-pie.netlify.app/')
     } else if (isMobile) {
-      hover(true);
+      hover(true)
     }
-  };
-console.log(nodes)
-  useEffect(() => {
-    actions.pieChartAction.setLoop(LoopOnce, 1);
-    actions.pieChartAction.clampWhenFinished = true;
-  }, []);
+  }
+
+  const customPieAnimate = (position) => {
+    if (position >= 1.5) {
+      step = -0.01
+    } else if (position <= 0.7) {
+      setIsAnimating(false)
+    }
+    return (position += step)
+  }
+
+  useFrame((state) => {
+    const et = state.clock.elapsedTime
+
+    if (isAnimating) {
+      pieGroup.current.position.y = customPieAnimate(
+        pieGroup.current.position.y
+      )
+      pieGroup.current.rotation.x = Math.sin(et * 2) / 2
+      pieGroup.current.rotation.y = Math.cos(et * 2) / 2
+      pieGroup.current.rotation.z = Math.sin(et * 2) / 2
+    } else {
+      pieGroup.current.position.y = (Math.sin(et) * 1) / 6 + 0.8
+      pieGroup.current.rotation.x = Math.sin(et / 3) / 2
+      pieGroup.current.rotation.y = Math.cos(et / 2) / 2
+      pieGroup.current.rotation.z = Math.sin(et / 3) / 2
+    }
+  })
 
   return (
     <group
+      ref={pieGroup}
       onPointerDown={handlePointerDown}
       name="pieChart"
-      position={[-2.27789855, 1.09064043, 0]}
+      position={[-2.27789855, 0.5, 0]}
       rotation={[-0.0233508, -0.40575488, -0.03035608]}
       onPointerOver={() => {
-        hover(true);
-        actions.pieChartAction.play();
+        hover(true)
+        setIsAnimating(true)
       }}
       onPointerOut={() => hover(false)}
       onPointerUp={handlePointerUp}
@@ -51,8 +79,8 @@ console.log(nodes)
       >
         {hovered && (
           <meshStandardMaterial
-            color={"green"}
-            emissive={"green"}
+            color={'green'}
+            emissive={'green'}
             emissiveIntensity={hovered ? 5 : 0}
             toneMapped={false}
           />
@@ -67,9 +95,9 @@ console.log(nodes)
       >
         {hovered && (
           <meshStandardMaterial
-            color={"#E67D16"}
-            emissive={"#E67D16"}
-            emissiveIntensity={hovered ? 5 : 0}
+            color={'#E67D16'}
+            emissive={'#E67D16'}
+            emissiveIntensity={hovered ? 3 : 0}
             toneMapped={false}
           />
         )}
@@ -83,9 +111,9 @@ console.log(nodes)
       >
         {hovered && (
           <meshStandardMaterial
-            color={"#0C00D4"}
-            emissive={"#396CDF"}
-            emissiveIntensity={hovered ? 5 : 0}
+            color={'#0C00D4'}
+            emissive={'#396CDF'}
+            emissiveIntensity={hovered ? 6 : 0}
             toneMapped={false}
           />
         )}
@@ -99,15 +127,15 @@ console.log(nodes)
       >
         {hovered && (
           <meshStandardMaterial
-            color={"#B31E14"}
-            emissive={"#D94238"}
-            emissiveIntensity={hovered ? 5 : 0}
+            color={'#B31E14'}
+            emissive={'#D94238'}
+            emissiveIntensity={hovered ? 4 : 0}
             toneMapped={false}
           />
         )}
       </mesh>
     </group>
-  );
+  )
 }
 
-export default PieChart;
+export default PieChart

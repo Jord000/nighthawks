@@ -1,5 +1,6 @@
 'use client'
 import { LoadedContext } from '@/contexts/LoadedContext'
+import { isMobileContext } from '@/contexts/isMobileContext'
 import { motion } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
 
@@ -12,13 +13,15 @@ const textAnimations = {
   },
 }
 
+
+
 function AnimatedText({ text }) {
   const { isLoaded } = useContext(LoadedContext)
   const [isTimerComplete, setIsTimerComplete] = useState(false)
   const textArray = Array.isArray(text) ? text : [text]
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 800)
-  const [textSize, setTextSize] = useState('text-[#071a38] text-3xl leading-[4rem] ')
-  const [textSizeAlt, setTextSizeAlt] = useState('text-[#071a38] text-xl leading-[2.2rem]')
+  const { isMobile } = useContext(isMobileContext);
+  const [textSize, setTextSize] = useState('text-[#dfdff0] text-3xl leading-[4rem] ')
+  const [textSizeAlt, setTextSizeAlt] = useState('text-[#dfdff0] text-xl leading-[2.2rem]')
   
   useEffect(() => {
     if (isLoaded) {
@@ -27,8 +30,8 @@ function AnimatedText({ text }) {
       }, 2000)
     }
     if(isMobile){
-      setTextSize('text-[#071a38]  text-xl')
-      setTextSizeAlt('text-[#071a38]  text-sm')
+      setTextSize('text-[#dfdff0]  text-xl')
+      setTextSizeAlt('text-[#dfdff0]  text-sm')
 
     }
   }, [isLoaded])

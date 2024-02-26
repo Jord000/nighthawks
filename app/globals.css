@@ -14,29 +14,7 @@
 
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 210, 208, 255;
-  --background-end-rgb: 24, 17, 163;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 24, 17, 163;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 .loading-screen{
   position: fixed;
