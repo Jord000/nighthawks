@@ -1,18 +1,14 @@
-import React, { useEffect, useRef } from 'react'
-import { useGLTF, useAnimations, useTexture } from '@react-three/drei'
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 
-import Vinyl from './Vinyl'
-import NewsPaper from './NewsPaper'
-import PieChart from './PieChart'
+import Vinyl from "./Vinyl";
+import NewsPaper from "./NewsPaper";
+import PieChart from "./PieChart";
 
 export function NighthawksModel(props) {
-  const metalMatCap = useTexture('/metalmatcap1.png')
-  const group = useRef()
+  const group = useRef();
 
-  const { nodes, materials } = useGLTF('/bar-enviro-for-export.glb')
- 
-
-
+  const { nodes, materials } = useGLTF("/bar-enviro-for-export-condensed.glb");
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -22,7 +18,7 @@ export function NighthawksModel(props) {
         <PieChart nodes={nodes} materials={materials} />
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/bar-enviro-for-export.glb')
+useGLTF.preload("/bar-enviro-for-export-condensed.glb");
