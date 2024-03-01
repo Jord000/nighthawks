@@ -1,4 +1,4 @@
-import { Clouds, Cloud } from '@react-three/drei'
+import { Clouds, Cloud, useTexture } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 import * as THREE from 'three'
@@ -23,7 +23,7 @@ function SceneClouds() {
 
   return (
     <group>
-      <Clouds material={THREE.MeshBasicMaterial}>
+      <Clouds material={THREE.MeshBasicMaterial} texture={"cloud.png"}>
         <Cloud
           segments={20}
           bounds={[3, 3, 3]}
