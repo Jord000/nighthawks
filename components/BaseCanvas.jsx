@@ -11,7 +11,6 @@ import {
   ToneMapping,
 } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
-import SceneClouds from './SceneClouds'
 import LoadingScreen from './LoadingScreen'
 import { LoadedContext } from '@/contexts/LoadedContext'
 import FollowMouse from './FollowMouse'
@@ -45,14 +44,13 @@ function BaseCanvas() {
           <ScrollComponent cameraPosition={cameraPosition} />
           <FollowMouse />
         </ScrollControls>
-        <fog attach="fog" args={['#f5c3bf', 50, 190]} />
+        <fog attach="fog" args={['white', 50, 190]} />
         <Suspense fallback={null}>
           {isLoaded && (
             <>
               <Lights />
-              <SceneClouds />
               <NighthawksModel />
-              <color attach="background" args={['black']} />
+              <color attach="background" args={['white']} />
             </>
           )}
         </Suspense>

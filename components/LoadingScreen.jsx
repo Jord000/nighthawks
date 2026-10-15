@@ -12,17 +12,17 @@ function LoadingScreen() {
   }, [progress]);
   return (
     <div
-      className={`text-white loading-screen ${
+      className={`loading-screen ${
         isLoaded ? "loading-screen--started" : ""
       }`}
     >
-      <p className=" text-white text-4xl text-center mb-10">
+      <p className="text-[#0c0d36] text-4xl text-center mb-10">
         Welcome, thank you for waiting while the models load
       </p>
-      <div className="w-[90%] h-[6%] border-white border">
+      <div className="w-[90%] h-[6%] border-[#0c0d36] border">
         <p>Loading.....</p>
         <div
-          className={`h-[100%] bg-white`}
+          className={`h-[100%] bg-[#0c0d36]`}
           style={{
             width: `${progress}%`,
           }}
