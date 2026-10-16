@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 
 import Vinyl from "./Vinyl";
 import NewsPaper from "./NewsPaper";
+import MTGCard from "./MTGCard";
 import PieChart from "./PieChart";
 
 export function NighthawksModel(props) {
@@ -13,6 +14,7 @@ export function NighthawksModel(props) {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
+        <MTGCard />
         <Vinyl nodes={nodes} materials={materials} />
         <NewsPaper nodes={nodes} materials={materials} />
         <PieChart nodes={nodes} materials={materials} />

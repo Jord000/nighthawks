@@ -8,16 +8,15 @@ function PieChart({ nodes, materials, actions, mixer }) {
   const [hovered, hover] = useState(false)
   const { isMobile } = useContext(isMobileContext)
   const [clicks, setClicks] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
   const pieGroup = useRef()
-  let step = 0.01
+  // Clock for the bob/spin — runs 1.5x faster while hovered
+  const animTime = useRef(0)
 
 
 
   const handlePointerDown = (e) => {
     if (isMobile) {
       hover(true)
-      setIsAnimating(true)
       setClicks(clicks + 1)
     }
   }
@@ -29,31 +28,15 @@ function PieChart({ nodes, materials, actions, mixer }) {
     }
   }
 
-  const customPieAnimate = (position) => {
-    if (position >= 1.5) {
-      step = -0.01
-    } else if (position <= 0.7) {
-      setIsAnimating(false)
-    }
-    return (position += step)
-  }
+  useFrame((state, delta) => {
+    // Hover only speeds up this same motion — objects never drift away
+    animTime.current += Math.min(delta, 0.05) * (hovered ? 1.8 : 1)
+    const et = animTime.current
 
-  useFrame((state) => {
-    const et = state.clock.elapsedTime
-
-    if (isAnimating) {
-      pieGroup.current.position.y = customPieAnimate(
-        pieGroup.current.position.y
-      )
-      pieGroup.current.rotation.x = Math.sin(et * 2) / 2
-      pieGroup.current.rotation.y = Math.cos(et * 2) / 2
-      pieGroup.current.rotation.z = Math.sin(et * 2) / 2
-    } else {
-      pieGroup.current.position.y = (Math.sin(et) * 1) / 6 + 0.8
-      pieGroup.current.rotation.x = Math.sin(et / 3) / 2
-      pieGroup.current.rotation.y = Math.cos(et / 2) / 2
-      pieGroup.current.rotation.z = Math.sin(et / 3) / 2
-    }
+    pieGroup.current.position.y = (Math.sin(et) * 1) / 6 + 0.8
+    pieGroup.current.rotation.x = Math.sin(et / 3) / 2
+    pieGroup.current.rotation.y = Math.cos(et / 2) / 2
+    pieGroup.current.rotation.z = Math.sin(et / 3) / 2
   })
 
   return (
@@ -65,7 +48,6 @@ function PieChart({ nodes, materials, actions, mixer }) {
       rotation={[-0.0233508, -0.40575488, -0.03035608]}
       onPointerOver={() => {
         hover(true)
-        setIsAnimating(true)
       }}
       onPointerOut={() => hover(false)}
       onPointerUp={handlePointerUp}
@@ -81,7 +63,7 @@ function PieChart({ nodes, materials, actions, mixer }) {
           <meshStandardMaterial
             color={'green'}
             emissive={'green'}
-            emissiveIntensity={hovered ? 5 : 0}
+            emissiveIntensity={hovered ? 3.5 : 0}
             toneMapped={false}
           />
         )}
@@ -97,7 +79,7 @@ function PieChart({ nodes, materials, actions, mixer }) {
           <meshStandardMaterial
             color={'#E67D16'}
             emissive={'#E67D16'}
-            emissiveIntensity={hovered ? 3 : 0}
+            emissiveIntensity={hovered ? 2.1 : 0}
             toneMapped={false}
           />
         )}
@@ -113,7 +95,7 @@ function PieChart({ nodes, materials, actions, mixer }) {
           <meshStandardMaterial
             color={'#0C00D4'}
             emissive={'#396CDF'}
-            emissiveIntensity={hovered ? 6 : 0}
+            emissiveIntensity={hovered ? 4.2 : 0}
             toneMapped={false}
           />
         )}
@@ -129,7 +111,7 @@ function PieChart({ nodes, materials, actions, mixer }) {
           <meshStandardMaterial
             color={'#B31E14'}
             emissive={'#D94238'}
-            emissiveIntensity={hovered ? 4 : 0}
+            emissiveIntensity={hovered ? 2.8 : 0}
             toneMapped={false}
           />
         )}
