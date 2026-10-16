@@ -62,11 +62,11 @@ function Vinyl({ nodes, materials }) {
         <MeshTransmissionMaterial
           resolution={1024}
           distortion={0.25}
-          color="#E3E3E3"
+          color="#0a0a0a"
           thickness={1}
           anisotropy={1}
           emissive={'hotpink'}
-          emissiveIntensity={hovered ? 5 : 0.01}
+          emissiveIntensity={hovered ? 3.5 : 0.01}
           toneMapped={false}
         />
       </mesh>

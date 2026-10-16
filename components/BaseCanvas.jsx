@@ -21,7 +21,7 @@ import { ScrollControls } from '@react-three/drei'
 function BaseCanvas() {
   const { isLoaded } = useContext(LoadedContext)
   const { isMobile, setIsMobile } = useContext(isMobileContext)
-  const [cameraPosition, setCameraPosition] = useState([-1.2, 2.2, 1.8])
+  const [cameraPosition, setCameraPosition] = useState([-2, 2.2, 1.8])
 
   useEffect(() => {
     if (window.innerWidth < 800) {
