@@ -26,7 +26,8 @@ function BaseCanvas() {
   useEffect(() => {
     if (window.innerWidth < 800) {
       setIsMobile(true)
-      setCameraPosition([-3, 2, 2])
+      setCameraPosition([-5, 2, 1])
+
     }
   }, [isLoaded])
 

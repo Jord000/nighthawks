@@ -18,7 +18,7 @@ function NewsPaper({ nodes, materials }) {
     geometry.computeBoundingBox()
     const size = geometry.boundingBox.getSize(new Vector3())
     const center = geometry.boundingBox.getCenter(new Vector3())
-    const box = new BoxGeometry(size.x + 0.4, size.y + 0.4, size.z + 0.4)
+    const box = new BoxGeometry(size.x + 0.2, size.y + 0.2, size.z + 0.2)
     box.translate(center.x, center.y, center.z)
     return box
   }, [nodes])
