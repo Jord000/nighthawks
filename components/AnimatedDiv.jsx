@@ -41,15 +41,13 @@ function AnimatedDiv() {
       {!isMobile && isTimerComplete && isLoaded && (
         <motion.div
           initial={{ x: -1000 }}
-          animate={{ x: '2%' }}
+          animate={{ x: 0 }}
           transition={{ delay: 1, duration: 1.5 }}
-          className="bg-[#EFEFF8] absolute z-10 mt-[5%] mb-auto min-h-[20%] min-w-[40px] p-2 bg-opacity-5 border-solid rounded drop-shadow "
+          className="bg-[#EFEFF8] absolute z-10 left-[3%] bottom-[5%] min-h-[20%] min-w-[40px] p-2 bg-opacity-5 border-solid rounded drop-shadow "
         >
           <AnimatedText
             text={[
-              'Jordan Watson',
-              'Software Developer',
-              'Hover over one of the items.',
+              'Jordan Watson - Software Developer',
               'Click an item to jump to one of my projects',
             ]}
           />

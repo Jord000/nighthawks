@@ -14,7 +14,7 @@ export default function ScrollComponent({ cameraPosition }) {
       ? state.camera.position.set(
           cameraPosition[0] + offset*3.5,
           cameraPosition[1],
-          cameraPosition[2]-offset
+          cameraPosition[2]+offset
         )
       : state.camera.position.set(
           cameraPosition[0] + offset * 1.5,

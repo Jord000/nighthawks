@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: CosmicVibrant;
-  src: url("../public/CosmicVibrant.otf") format("opentype");
+  font-family: Michroma;
+  src: url("../public/Michroma-Regular.ttf") format("truetype");
   unicode-range: U+00-FF;
 }
 
 *{
-  font-family: 'CosmicVibrant';
-  font-weight: 200;
+  font-family: 'Michroma';
+  font-weight: 400;
 
 }
 
@@ -29,7 +29,7 @@
   justify-content: center;
   transition: opacity 5s;
   z-index: 1;
-  background-color: #111213;
+  background-color: #ffffff;
   flex-direction: column;
   padding: 30px;
 }

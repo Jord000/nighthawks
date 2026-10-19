@@ -9,13 +9,12 @@ function Vinyl({ nodes, materials }) {
   const { isMobile } = useContext(isMobileContext)
   const [clicks, setClicks] = useState(0)
   const vinylGroup = useRef()
-  const [isAnimating, setIsAnimating] = useState(false)
-  let step = 0.01
+  // Clock for the bob/spin — runs 1.5x faster while hovered
+  const animTime = useRef(0)
 
   const handlePointerDown = (e) => {
     if (isMobile) {
       hover(true)
-      setIsAnimating(true)
       setClicks(clicks + 1)
     }
   }
@@ -30,31 +29,15 @@ function Vinyl({ nodes, materials }) {
     }
   }
 
-  const customVinylAnimation = (position) => {
-    if (position >= 1.8) {
-      step = -0.01
-    } else if (position <= 0.7) {
-      setIsAnimating(false)
-    }
-    return (position += step)
-  }
+  useFrame((state, delta) => {
+    // Hover only speeds up this same motion — objects never drift away
+    animTime.current += Math.min(delta, 0.05) * (hovered ? 1.8 : 1)
+    const et = animTime.current
 
-  useFrame((state) => {
-    const et = state.clock.elapsedTime
-
-    if (isAnimating) {
-      vinylGroup.current.position.y = customVinylAnimation(
-        vinylGroup.current.position.y
-      )
-      vinylGroup.current.rotation.x = Math.sin(et * 2)
-      vinylGroup.current.rotation.y = Math.cos((et * 2) / 3) / 2
-      vinylGroup.current.rotation.z = Math.sin(et * 2)
-    } else {
-      vinylGroup.current.position.y = (Math.sin(et * 1.2) * 1) / 6 + 1
-      vinylGroup.current.rotation.x = Math.sin(et / 3)
-      vinylGroup.current.rotation.y = Math.cos((et * 2) / 3) / 2
-      vinylGroup.current.rotation.z = Math.sin(et / 3)
-    }
+    vinylGroup.current.position.y = (Math.sin(et * 1.2) * 1) / 6 + 1
+    vinylGroup.current.rotation.x = Math.sin(et / 3)
+    vinylGroup.current.rotation.y = Math.cos((et * 2) / 3) / 2
+    vinylGroup.current.rotation.z = Math.sin(et / 3)
   })
 
   return (
@@ -64,11 +47,11 @@ function Vinyl({ nodes, materials }) {
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerOver={() => {
-        setIsAnimating(true)
         hover(true)
       }}
       onPointerOut={() => hover(false)}
-      position={[-0.6684292, 0.5, 0.00542845]}
+      position={[-0.7, 0.5, 0.05]}
+      scale={1.15}
     >
       <mesh
         name="Cylinder010"
@@ -79,11 +62,11 @@ function Vinyl({ nodes, materials }) {
         <MeshTransmissionMaterial
           resolution={1024}
           distortion={0.25}
-          color="#E3E3E3"
+          color="#0a0a0a"
           thickness={1}
           anisotropy={1}
           emissive={'hotpink'}
-          emissiveIntensity={hovered ? 5 : 0.01}
+          emissiveIntensity={hovered ? 2.5 : 0.01}
           toneMapped={false}
         />
       </mesh>

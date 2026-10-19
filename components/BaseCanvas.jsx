@@ -11,7 +11,6 @@ import {
   ToneMapping,
 } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
-import SceneClouds from './SceneClouds'
 import LoadingScreen from './LoadingScreen'
 import { LoadedContext } from '@/contexts/LoadedContext'
 import FollowMouse from './FollowMouse'
@@ -22,12 +21,13 @@ import { ScrollControls } from '@react-three/drei'
 function BaseCanvas() {
   const { isLoaded } = useContext(LoadedContext)
   const { isMobile, setIsMobile } = useContext(isMobileContext)
-  const [cameraPosition, setCameraPosition] = useState([-1.2, 2.2, 1.8])
+  const [cameraPosition, setCameraPosition] = useState([-2, 2.2, 1.8])
 
   useEffect(() => {
     if (window.innerWidth < 800) {
       setIsMobile(true)
-      setCameraPosition([-3, 2, 2])
+      setCameraPosition([-5, 2, 1])
+
     }
   }, [isLoaded])
 
@@ -45,14 +45,13 @@ function BaseCanvas() {
           <ScrollComponent cameraPosition={cameraPosition} />
           <FollowMouse />
         </ScrollControls>
-        <fog attach="fog" args={['#f5c3bf', 50, 190]} />
+        <fog attach="fog" args={['white', 50, 190]} />
         <Suspense fallback={null}>
           {isLoaded && (
             <>
               <Lights />
-              <SceneClouds />
               <NighthawksModel />
-              <color attach="background" args={['black']} />
+              <color attach="background" args={['white']} />
             </>
           )}
         </Suspense>

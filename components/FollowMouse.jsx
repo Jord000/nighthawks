@@ -10,7 +10,7 @@ export default function FollowMouse() {
   const scroll = useScroll();
   useFrame((state) => {
     const offset = scroll.offset;
-    let mouse3D = new Vector3(pointer.x / 2 - 1.5, 1, -pointer.y / 2);
+    let mouse3D = new Vector3(pointer.x * 0.35 - 2, 1, -pointer.y * 0.35);
     isMobile
       ? camera.lookAt(-2 + offset, 1, 0 - (scroll.offset/3))
       : camera.lookAt(mouse3D);
