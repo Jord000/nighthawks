@@ -12,8 +12,7 @@ function NewsPaper({ nodes, materials }) {
   // Clock for the bob/spin — runs 1.5x faster while hovered
   const animTime = useRef(0)
 
-  // Invisible box padded around the paper so the thin model still has a
-  // comfortable hover/click target
+  // Invisible box padded around the paper 
   const hitGeometry = useMemo(() => {
     const geometry = nodes.newspaper.geometry
     geometry.computeBoundingBox()
@@ -23,6 +22,17 @@ function NewsPaper({ nodes, materials }) {
     box.translate(center.x, center.y, center.z)
     return box
   }, [nodes])
+
+  // Rest and hover share this material — the glow is purely emissive
+  const paperMaterial = useMemo(() => {
+    const material = materials.newspaper.clone()
+    material.color.set('#c9c4b8')
+    material.roughness = 0.85
+    material.metalness = 0
+    material.emissive.set('#7FCDF4')
+    material.emissiveIntensity = 0
+    return material
+  }, [materials])
 
   const handlePointerDown = (e) => {
     if (isMobile) {
@@ -40,6 +50,7 @@ function NewsPaper({ nodes, materials }) {
   }
 
   useFrame((state, delta) => {
+    paperMaterial.emissiveIntensity = hovered ? 0.8 : 0
     // Hover only speeds up this same motion — objects never drift away
     animTime.current += Math.min(delta, 0.04) * (hovered ? 1.68 : 1)
     const et = animTime.current
@@ -60,24 +71,15 @@ function NewsPaper({ nodes, materials }) {
       onPointerOut={() => hover(false)}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      position={[-1.20019758, 0.5, -0.00663512]}
-      rotation={[-0.77247715, 0, 0]}
+      position={[-1.21, 0.5, -0.006]}
+      rotation={[-0.78, 0, 0]}
     >
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.newspaper.geometry}
-        material={materials.newspaper}
-      >
-        {hovered && (
-          <meshStandardMaterial
-            color={'white'}
-            emissive={'#7FCDF4'}
-            emissiveIntensity={hovered ? 1.4 : 0}
-            toneMapped={false}
-          />
-        )}
-      </mesh>
+        material={paperMaterial}
+      />
       {/* Invisible, oversized hit target */}
       <mesh name="newspaperHitbox" geometry={hitGeometry}>
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />

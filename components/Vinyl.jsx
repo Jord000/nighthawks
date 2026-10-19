@@ -50,7 +50,7 @@ function Vinyl({ nodes, materials }) {
         hover(true)
       }}
       onPointerOut={() => hover(false)}
-      position={[-0.6684292, 0.5, 0.00542845]}
+      position={[-0.7, 0.5, 0.05]}
       scale={1.15}
     >
       <mesh
@@ -66,7 +66,7 @@ function Vinyl({ nodes, materials }) {
           thickness={1}
           anisotropy={1}
           emissive={'hotpink'}
-          emissiveIntensity={hovered ? 3.5 : 0.01}
+          emissiveIntensity={hovered ? 2.5 : 0.01}
           toneMapped={false}
         />
       </mesh>

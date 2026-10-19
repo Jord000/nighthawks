@@ -13,8 +13,6 @@ function MTGCard() {
   // Clock for the bob/spin — runs 1.5x faster while hovered
   const animTime = useRef(0)
 
-  // Real card-back image — the source is a square with white margins, so the
-  // texture is cropped to the card's portrait bounds via repeat/offset
   const cardTexture = useTexture('/mtg-card-back.webp')
   useMemo(() => {
     cardTexture.colorSpace = SRGBColorSpace
@@ -71,14 +69,14 @@ function MTGCard() {
         <meshStandardMaterial
           attach="material-4"
           map={cardTexture}
-          emissive={'#7FCDF4'}
+          emissive={'#573b17'}
           emissiveIntensity={hovered ? 1.4 : 0}
           toneMapped={false}
         />
         <meshStandardMaterial
           attach="material-5"
           map={cardTexture}
-          emissive={'#7FCDF4'}
+          emissive={'#573b17'}
           emissiveIntensity={hovered ? 1.4 : 0}
           toneMapped={false}
         />

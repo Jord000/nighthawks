@@ -13,8 +13,6 @@ const textAnimations = {
   },
 }
 
-
-
 function AnimatedText({ text }) {
   const { isLoaded } = useContext(LoadedContext)
   const [isTimerComplete, setIsTimerComplete] = useState(false)
@@ -28,7 +26,7 @@ function AnimatedText({ text }) {
     if (isLoaded) {
        setTimeout(() => {
         setIsTimerComplete(true)
-      }, 2000)
+      }, 1000)
     }
     if(isMobile){
       setTextSize(`${textColor}  text-xl`)

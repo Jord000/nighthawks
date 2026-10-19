@@ -48,7 +48,6 @@ function AnimatedDiv() {
           <AnimatedText
             text={[
               'Jordan Watson - Software Developer',
-              'Hover over one of the items.',
               'Click an item to jump to one of my projects',
             ]}
           />
