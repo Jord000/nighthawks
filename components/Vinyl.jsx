@@ -22,7 +22,7 @@ function Vinyl({ nodes, materials }) {
   const handlePointerUp = (e) => {
     if (!isMobile || (isMobile && clicks > 1)) {
       openInNewTab(
-        'https://github.com/GatefoldWax/wax-frontend/blob/main/README.md'
+        'https://github.com/GatefoldWax/wax-frontend#wax'
       )
     } else if (isMobile) {
       hover(true)
